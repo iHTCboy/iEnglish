@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D4429421EE5A3760030534D /* TCTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4429411EE5A3760030534D /* TCTabbarController.swift */; };
+		6D4429441EE5A4AD0030534D /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4429431EE5A4AD0030534D /* SettingController.swift */; };
+		6D4429461EE5ACE00030534D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4429451EE5ACE00030534D /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6D9E72921EE45ABA00AB993A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9E72911EE45ABA00AB993A /* AudioToolbox.framework */; };
 		6DA062851EE43D6F00B3F5D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062841EE43D6F00B3F5D9 /* Assets.xcassets */; };
 		6DA062881EE43D6F00B3F5D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062861EE43D6F00B3F5D9 /* LaunchScreen.storyboard */; };
@@ -43,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D4429411EE5A3760030534D /* TCTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCTabbarController.swift; sourceTree = "<group>"; };
+		6D4429431EE5A4AD0030534D /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
+		6D4429451EE5ACE00030534D /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		6D9E72911EE45ABA00AB993A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6DA0627A1EE43D6F00B3F5D9 /* iEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA062841EE43D6F00B3F5D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4429461EE5ACE00030534D /* SafariServices.framework in Frameworks */,
 				6D9E72921EE45ABA00AB993A /* AudioToolbox.framework in Frameworks */,
 				6DA062B51EE4452600B3F5D9 /* libBaiduMobStat.a in Frameworks */,
 				6DA062B01EE444EB00B3F5D9 /* libsqlite3.0.tbd in Frameworks */,
@@ -162,6 +169,7 @@
 		6DA062AE1EE444EB00B3F5D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D4429451EE5ACE00030534D /* SafariServices.framework */,
 				6D9E72911EE45ABA00AB993A /* AudioToolbox.framework */,
 				6DA062AF1EE444EB00B3F5D9 /* libsqlite3.0.tbd */,
 			);
@@ -202,6 +210,8 @@
 				6DA062C01EE447B800B3F5D9 /* WordsViewController.swift */,
 				6DA062CD1EE4553700B3F5D9 /* CategoryViewController.swift */,
 				6DA062C31EE447DE00B3F5D9 /* TCNavigationController.swift */,
+				6D4429411EE5A3760030534D /* TCTabbarController.swift */,
+				6D4429431EE5A4AD0030534D /* SettingController.swift */,
 			);
 			path = ViewAndController;
 			sourceTree = "<group>";
@@ -354,8 +364,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4429441EE5A4AD0030534D /* SettingController.swift in Sources */,
 				6DA062C21EE447B800B3F5D9 /* WordsViewController.swift in Sources */,
 				6DA062C11EE447B800B3F5D9 /* AppDelegate.swift in Sources */,
+				6D4429421EE5A3760030534D /* TCTabbarController.swift in Sources */,
 				6DA062CE1EE4553700B3F5D9 /* CategoryViewController.swift in Sources */,
 				6DA062C91EE44E8C00B3F5D9 /* SQLiteDB.swift in Sources */,
 				6DA062C41EE447DE00B3F5D9 /* TCNavigationController.swift in Sources */,

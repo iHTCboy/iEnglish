@@ -8,13 +8,16 @@
 
 import UIKit
 import AudioToolbox
+import SafariServices
 
 class WordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = kAppName
+        if title == nil {
+            title = kAppName
+        }
         
         if words.isEmpty {
             words = db.query(sql: "select * from Words ORDER BY upper(en)")
@@ -47,7 +50,7 @@ class WordsViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         var tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH), style: .plain)
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 40, right: 0)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
 //        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         tableView.estimatedRowHeight = 80
         tableView.delegate = self;
@@ -63,9 +66,6 @@ class WordsViewController: UIViewController {
 extension WordsViewController
 {
     func playSoundEffect(audioPath: String) {
-//        let audioFile = Bundle.main.path(forResource: name, ofType: nil)
-//        
-//        assert(audioFile != nil, "voice path is nil")
         
         let fileUrl = URL.init(fileURLWithPath: audioPath)
         
@@ -78,6 +78,24 @@ extension WordsViewController
         
         AudioServicesPlaySystemSound(soundId)
         //        AudioServicesPlayAlertSound(soundId) //paly and Shake
+    }
+    
+    func clickedBtn(btn: UIButton) {
+        let dictionary = words[btn.tag] as [String : Any]
+        let word = dictionary["en"] as? String
+        let url = "https://m.youdao.com/dict?q=" + word!
+        let URLs = URL.init(string: url)!
+        if #available(iOS 9.0, *) {
+            let sfvc = SFSafariViewController.init(url: URLs)
+            sfvc.hidesBottomBarWhenPushed = true
+            sfvc.title = word
+            self.navigationController?.pushViewController(sfvc, animated: true)
+        } else {
+            // Fallback on earlier versions
+            if UIApplication.shared.canOpenURL(URLs) {
+                UIApplication.shared.openURL(URLs)
+            }
+        }
     }
 }
 
@@ -98,13 +116,20 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: "WordsViewCell")
         if cell == nil {
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "WordsViewCell")
-            cell?.accessoryType = .disclosureIndicator
         }
+        
+        let btn = UIButton.init(type: .detailDisclosure)
+        btn.tintColor = kColorAppMain
+        btn.tag = indexPath.row
+        btn.addTarget(self, action: #selector(clickedBtn(btn:)), for: .touchUpInside)
+        cell?.accessoryView = btn
         
         let dictionary = words[indexPath.row] as [String : Any]
         
         cell?.textLabel?.text = dictionary["en"] as? String
-        cell?.detailTextLabel?.text = dictionary["zh_CN"] as? String
+        cell?.detailTextLabel?.textAlignment = .center
+        let detial = (dictionary["zh_CN"] as? String)! + "­­­ >"
+        cell?.detailTextLabel?.text = detial
         
         /*
  13 elements
@@ -160,7 +185,7 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         if let bundlePath = Bundle.main.path(forResource: "iEnglish", ofType: "bundle"),
             let bundle = Bundle(path: bundlePath),
             let path = bundle.path(forResource: name?.lowercased(), ofType: "aiff") {
-            print(path)
+            //print(path)
             AudioServicesRemoveSystemSoundCompletion(soundId)
             playSoundEffect(audioPath: path)
         } else {

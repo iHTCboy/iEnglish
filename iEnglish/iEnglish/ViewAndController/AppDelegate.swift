@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupBaseUI()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = TCNavigationController(rootViewController: WordsViewController())
+        let tabbar = TCTabbarController()
+        tabbar.viewControllers = [TCNavigationController(rootViewController: WordsViewController()), TCNavigationController(rootViewController: CategoryViewController()), TCNavigationController(rootViewController: SettingController())]
+        window?.rootViewController = tabbar
         window?.makeKeyAndVisible()
         
         startBaiduMobStat()

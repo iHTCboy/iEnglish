@@ -13,6 +13,8 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Category"
+        
         category = db.query(sql: "select * from Category")
         
         print(category)
@@ -40,10 +42,12 @@ class CategoryViewController: UIViewController {
     var category : [[String: Any]] = [["":""]]
     
     lazy var tableView: UITableView = {
-        var tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH-64-48), style: .plain)
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 40, right: 0)
+        var tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH), style: .grouped)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         tableView.estimatedRowHeight = 80
+        tableView.sectionFooterHeight = 5;
+        tableView.sectionHeaderHeight = 5;
         tableView.delegate = self;
         tableView.dataSource = self;
         //        tableView.register(UINib.init(nibName: "ITQuestionListViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ITQuestionListViewCell")
@@ -67,12 +71,16 @@ extension CategoryViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: "WordsViewCell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CategoryViewCell")
         if cell == nil {
-            cell = UITableViewCell.init(style: .default, reuseIdentifier: "WordsViewCell")
+            cell = UITableViewCell.init(style: .value1, reuseIdentifier: "CategoryViewCell")
+            cell?.accessoryType = .disclosureIndicator
         }
         
-        cell?.accessoryType = .disclosureIndicator
+        let dictionary = category[indexPath.section] as [String : Any]
+        
+        cell?.textLabel?.text = dictionary["en"] as? String
+        cell?.detailTextLabel?.text = dictionary["zh_CN"] as? String
         
         return cell!
     }
@@ -80,6 +88,15 @@ extension CategoryViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let dictionary = category[indexPath.section] as [String : Any]
+        let sql = "select * from Words where cat_id =" + "'\(String(dictionary["cat_id"] as! Int))'"
+        let words = db.query(sql: sql)
+        
+        let wordsVc = WordsViewController()
+        wordsVc.title = dictionary["en"] as? String
+        wordsVc.words = words
+        wordsVc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(wordsVc, animated: true)
         
     }
 }

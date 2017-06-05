@@ -1,14 +1,14 @@
 //
-//  TCNavigationController.swift
+//  TCTabbarController.swift
 //  iEnglish
 //
-//  Created by HTC on 2017/6/4.
+//  Created by HTC on 2017/6/5.
 //  Copyright © 2017年 iHTCboy. All rights reserved.
 //
 
 import UIKit
 
-class TCNavigationController: UINavigationController {
+class TCTabbarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,5 +20,7 @@ class TCNavigationController: UINavigationController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    
 }
