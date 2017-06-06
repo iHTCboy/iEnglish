@@ -41,7 +41,7 @@ let kTitleViewH : CGFloat = 40
 let kScreenW = UIScreen.main.bounds.width
 let kScreenH = UIScreen.main.bounds.height
 
-let kMarginLine = "———————————————————————"
+let kMarginLine = "———————————————————"
 
 // Color
 let kColorAppMain = UIColor(red:0.844,  green:0.326,  blue:0.278, alpha:1)

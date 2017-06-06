@@ -127,9 +127,11 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         let dictionary = words[indexPath.row] as [String : Any]
         
         cell?.textLabel?.text = dictionary["en"] as? String
-        cell?.detailTextLabel?.textAlignment = .center
-        let detial = (dictionary["zh_CN"] as? String)! + "­­­ >"
-        cell?.detailTextLabel?.text = detial
+        let detial = (dictionary["zh_CN"] as? String)!
+        let detialString = NSMutableAttributedString.init(string: detial)
+        let part = NSMutableAttributedString(string: " . ", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        detialString.append(part)
+        cell?.detailTextLabel?.attributedText = detialString
         
         /*
  13 elements
