@@ -44,7 +44,7 @@ extension ITAboutAppVC
         self.logoImgView.layer.masksToBounds = true
         self.appNameLbl.text = kAppName
         self.versionLbl.text = "v" + KAppVersion
-        self.contentLbl.text = "\(kAppName) 为一款IT工程师们提供知识充电的应用，IT知识学习、面试必备的工具，不断努力打造更多更好方式呈现更有趣的知识，让大家在零碎时间也可以快速和简单的学习get! \n \n 1、10000+题目库，满足你的求知欲！\n2、IT企业面试题目，为你完名企的梦！\n3、IT知识内容，为你准备好的面试！"
+        self.contentLbl.text = "\(kAppName) 为一款英语初学者提供基础英文单词学习的应用，正确的单词发音、必备的分类单词，不断努力打造更简单更好方式呈现更有趣的英语知识，让大家在零碎时间也可以快速和简单的学习get!"
         self.copylightLbl.text = "Copyright © 2017 " + "iHTCboy"
     }
 }

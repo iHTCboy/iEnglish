@@ -20,6 +20,12 @@ class CategoryViewController: UIViewController {
         print(category)
         
         view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        let views = ["tableView": tableView]
+        let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        NSLayoutConstraint.activate(widthConstraints)
+        NSLayoutConstraint.activate(heightConstraints)
         
     }
     

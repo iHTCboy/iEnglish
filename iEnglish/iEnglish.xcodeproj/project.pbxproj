@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D1ABA131EE84D030026054A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA121EE84D030026054A /* CFNetwork.framework */; };
+		6D1ABA151EE84D0A0026054A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA141EE84D0A0026054A /* MessageUI.framework */; };
+		6D1ABA171EE84D170026054A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA161EE84D170026054A /* StoreKit.framework */; };
+		6D1ABA191EE84D1E0026054A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA181EE84D1E0026054A /* Foundation.framework */; };
+		6D1ABA1B1EE84D250026054A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA1A1EE84D250026054A /* JavaScriptCore.framework */; };
+		6D1ABA1D1EE84D2A0026054A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA1C1EE84D2A0026054A /* CoreTelephony.framework */; };
+		6D1ABA1F1EE84D2F0026054A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA1E1EE84D2F0026054A /* CoreGraphics.framework */; };
+		6D1ABA211EE84D350026054A /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA201EE84D350026054A /* libstdc++.tbd */; };
+		6D1ABA231EE84D3C0026054A /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA221EE84D3C0026054A /* libz.1.2.5.tbd */; };
+		6D1ABA251EE84D430026054A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA241EE84D430026054A /* Security.framework */; };
+		6D1ABA271EE84D4A0026054A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA261EE84D4A0026054A /* CoreLocation.framework */; };
+		6D1ABA291EE84DBA0026054A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA281EE84DBA0026054A /* SystemConfiguration.framework */; };
 		6D4429421EE5A3760030534D /* TCTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4429411EE5A3760030534D /* TCTabbarController.swift */; };
 		6D4429441EE5A4AD0030534D /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4429431EE5A4AD0030534D /* SettingController.swift */; };
 		6D4429461EE5ACE00030534D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4429451EE5ACE00030534D /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -49,6 +61,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D1ABA121EE84D030026054A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6D1ABA141EE84D0A0026054A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		6D1ABA161EE84D170026054A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		6D1ABA181EE84D1E0026054A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6D1ABA1A1EE84D250026054A /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		6D1ABA1C1EE84D2A0026054A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6D1ABA1E1EE84D2F0026054A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6D1ABA201EE84D350026054A /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		6D1ABA221EE84D3C0026054A /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		6D1ABA241EE84D430026054A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6D1ABA261EE84D4A0026054A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6D1ABA281EE84DBA0026054A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6D4429411EE5A3760030534D /* TCTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCTabbarController.swift; sourceTree = "<group>"; };
 		6D4429431EE5A4AD0030534D /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		6D4429451EE5ACE00030534D /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
@@ -86,7 +110,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D1ABA291EE84DBA0026054A /* SystemConfiguration.framework in Frameworks */,
+				6D1ABA271EE84D4A0026054A /* CoreLocation.framework in Frameworks */,
+				6D1ABA251EE84D430026054A /* Security.framework in Frameworks */,
+				6D1ABA231EE84D3C0026054A /* libz.1.2.5.tbd in Frameworks */,
+				6D1ABA211EE84D350026054A /* libstdc++.tbd in Frameworks */,
+				6D1ABA1F1EE84D2F0026054A /* CoreGraphics.framework in Frameworks */,
+				6D1ABA1D1EE84D2A0026054A /* CoreTelephony.framework in Frameworks */,
+				6D1ABA1B1EE84D250026054A /* JavaScriptCore.framework in Frameworks */,
+				6D1ABA191EE84D1E0026054A /* Foundation.framework in Frameworks */,
+				6D1ABA171EE84D170026054A /* StoreKit.framework in Frameworks */,
 				6D4429461EE5ACE00030534D /* SafariServices.framework in Frameworks */,
+				6D1ABA151EE84D0A0026054A /* MessageUI.framework in Frameworks */,
+				6D1ABA131EE84D030026054A /* CFNetwork.framework in Frameworks */,
 				6D9E72921EE45ABA00AB993A /* AudioToolbox.framework in Frameworks */,
 				6DA062B51EE4452600B3F5D9 /* libBaiduMobStat.a in Frameworks */,
 				6DA062B01EE444EB00B3F5D9 /* libsqlite3.0.tbd in Frameworks */,
@@ -175,6 +211,18 @@
 		6DA062AE1EE444EB00B3F5D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6D1ABA281EE84DBA0026054A /* SystemConfiguration.framework */,
+				6D1ABA261EE84D4A0026054A /* CoreLocation.framework */,
+				6D1ABA241EE84D430026054A /* Security.framework */,
+				6D1ABA221EE84D3C0026054A /* libz.1.2.5.tbd */,
+				6D1ABA201EE84D350026054A /* libstdc++.tbd */,
+				6D1ABA1E1EE84D2F0026054A /* CoreGraphics.framework */,
+				6D1ABA1C1EE84D2A0026054A /* CoreTelephony.framework */,
+				6D1ABA1A1EE84D250026054A /* JavaScriptCore.framework */,
+				6D1ABA181EE84D1E0026054A /* Foundation.framework */,
+				6D1ABA161EE84D170026054A /* StoreKit.framework */,
+				6D1ABA141EE84D0A0026054A /* MessageUI.framework */,
+				6D1ABA121EE84D030026054A /* CFNetwork.framework */,
 				6D4429451EE5ACE00030534D /* SafariServices.framework */,
 				6D9E72911EE45ABA00AB993A /* AudioToolbox.framework */,
 				6DA062AF1EE444EB00B3F5D9 /* libsqlite3.0.tbd */,
@@ -218,9 +266,9 @@
 				6DA062BF1EE447B800B3F5D9 /* AppDelegate.swift */,
 				6DA062C01EE447B800B3F5D9 /* WordsViewController.swift */,
 				6DA062CD1EE4553700B3F5D9 /* CategoryViewController.swift */,
+				6D4429431EE5A4AD0030534D /* SettingController.swift */,
 				6DA062C31EE447DE00B3F5D9 /* TCNavigationController.swift */,
 				6D4429411EE5A3760030534D /* TCTabbarController.swift */,
-				6D4429431EE5A4AD0030534D /* SettingController.swift */,
 			);
 			path = ViewAndController;
 			sourceTree = "<group>";

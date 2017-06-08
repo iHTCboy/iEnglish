@@ -26,6 +26,14 @@ class WordsViewController: UIViewController {
         print(words)
         
         view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        let views = ["tableView": tableView]
+        let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        NSLayoutConstraint.activate(widthConstraints)
+        NSLayoutConstraint.activate(heightConstraints)
+        
+//        self.tableView.tableHeaderView = self.searchVC.searchBar
         
     }
 
@@ -57,6 +65,33 @@ class WordsViewController: UIViewController {
         tableView.dataSource = self;
 //        tableView.register(UINib.init(nibName: "ITQuestionListViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ITQuestionListViewCell")
         return tableView
+    }()
+    
+    lazy var searchVC: UISearchController = {
+        
+        let searchVC = UISearchController.init()
+//        searchVC.searchResultsUpdater = self as! UISearchResultsUpdating
+//        searchVC.searchBar.delegate = self as! UISearchBarDelegate
+//        searchVC.delegate = self as! UISearchControllerDelegate
+        searchVC.dimsBackgroundDuringPresentation = false //开始搜索时背景不显示
+        searchVC.hidesNavigationBarDuringPresentation = true //搜索时隐藏NavigationBar
+        
+//        //searchBar样式调整
+//        
+//        searchVC.searchBar.tintColor= //设置searchBar按钮字体颜色
+//        
+//        searchVC.searchBar.barTintColor= [YFRKitUtility colorFromHexString:@"0xEDEDF3"];//设置searchBar前景色
+//        
+//        searchVC.searchBar.layer.borderColor= [YFRKitUtility colorFromHexString:@"0xEDEDF3"].CGColor;//searchBar边线颜色（为了掩藏黑线）
+//        
+//        searchVC.searchBar.layer.borderWidth=0.5;
+//        
+//        [searchVC.searchBar sizeToFit];
+//        
+//        [searchVC.view addSubview:self.searchResultTableView];//把结果列表加在searchController的view上
+        
+        self.definesPresentationContext = true//fix 显示问题
+        return searchVC
     }()
     
 //    let Words = db.query(sql: "select * from Words")
@@ -98,6 +133,12 @@ extension WordsViewController
         }
     }
 }
+
+
+//extension WordsViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate
+//{
+//    
+//}
 
 
 // MARK: Tableview Delegate
