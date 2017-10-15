@@ -21,8 +21,6 @@ class CategoryViewController: UIViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white ]
-        } else {
-            // Fallback on earlier versions
         }
         
         view.addSubview(tableView)
@@ -87,6 +85,8 @@ extension CategoryViewController : UITableViewDelegate, UITableViewDataSource {
         if cell == nil {
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "CategoryViewCell")
             cell?.accessoryType = .disclosureIndicator
+            cell!.selectedBackgroundView = UIView.init(frame: cell!.frame)
+            cell!.selectedBackgroundView?.backgroundColor = kColorAppMain.withAlphaComponent(0.7)
         }
         
         let dictionary = category[indexPath.section] as [String : Any]
@@ -108,6 +108,10 @@ extension CategoryViewController : UITableViewDelegate, UITableViewDataSource {
         wordsVc.title = dictionary["en"] as? String
         wordsVc.words = words
         wordsVc.hidesBottomBarWhenPushed = true
+        if #available(iOS 11.0, *) {
+            wordsVc.navigationItem.largeTitleDisplayMode = .never
+        }
+        
         self.navigationController?.pushViewController(wordsVc, animated: true)
         
     }

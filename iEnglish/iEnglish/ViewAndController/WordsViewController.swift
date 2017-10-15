@@ -81,7 +81,7 @@ class WordsViewController: UIViewController {
         //设置索引列文本的颜色
         tableView.sectionIndexColor = kColorAppMain
         tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.sectionIndexTrackingBackgroundColor = KColorAPPRed
+        tableView.sectionIndexTrackingBackgroundColor = KColorAPPRed.withAlphaComponent(0.3)
 //        tableView.register(UINib.init(nibName: "ITQuestionListViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ITQuestionListViewCell")
         return tableView
     }()
@@ -99,14 +99,27 @@ class WordsViewController: UIViewController {
         searchVC.searchBar.delegate = self as UISearchBarDelegate
         searchVC.delegate = self as UISearchControllerDelegate
         searchVC.dimsBackgroundDuringPresentation = false //开始搜索时背景不显示
+        searchVC.searchBar.placeholder = "Search word"
         //searchBar样式调整
         if #available(iOS 11.0, *) {
             searchVC.searchBar.tintColor = UIColor.white
-            searchVC.searchBar.barTintColor = UIColor.clear
+            searchVC.searchBar.barTintColor = UIColor.white
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSForegroundColorAttributeName: kColorAppMain]
+            if let textfield = searchVC.searchBar.value(forKey: "searchField") as? UITextField {
+                textfield.tintColor = kColorAppMain
+                if let backgroundview = textfield.subviews.first {
+                    // Background color
+                    backgroundview.backgroundColor = UIColor.white
+                    // Rounded corner
+                    backgroundview.layer.cornerRadius = 10;
+                    backgroundview.clipsToBounds = true;
+                }
+            }
+            
         } else {
             searchVC.searchBar.tintColor = kColorAppMain//设置searchBar按钮字体颜色
         }
-    
+
         self.definesPresentationContext = true//fix 显示问题
         return searchVC
     }()
@@ -154,12 +167,6 @@ extension WordsViewController
                 }
             }
         }
-        
-        var result = sortWordDic.keys.sorted {(k1, k2) -> Bool in
-            
-            return k1 < k2
-        }
-        
         //print(sortWordDic)
     }
     
@@ -302,6 +309,8 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         var cell = tableView.dequeueReusableCell(withIdentifier: "WordsViewCell")
         if cell == nil {
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "WordsViewCell")
+            cell!.selectedBackgroundView = UIView.init(frame: cell!.frame)
+            cell!.selectedBackgroundView?.backgroundColor = kColorAppMain.withAlphaComponent(0.7)
         }
         
         let btn = UIButton.init(type: .detailDisclosure)
@@ -315,7 +324,7 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         cell?.textLabel?.text = dictionary["en"] as? String
         let detial = (dictionary[TCUserDefaults.shared.getIELanguage()] as? String)!
         let detialString = NSMutableAttributedString.init(string: detial)
-        let part = NSMutableAttributedString(string: " . ", attributes: [NSForegroundColorAttributeName: UIColor.white])
+        let part = NSMutableAttributedString(string: " . ", attributes: [NSForegroundColorAttributeName: UIColor.clear])
         detialString.append(part)
         cell?.detailTextLabel?.attributedText = detialString
         

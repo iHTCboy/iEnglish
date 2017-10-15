@@ -50,9 +50,7 @@ extension SettingController
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white ]
-        } else {
-            // Fallback on earlier versions
-        }
+        } 
         
         view.addSubview(tableView)
         tableView.delegate = self
@@ -96,7 +94,7 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "ITProgrammerVCViewCell")
             cell!.accessoryType = .disclosureIndicator
             cell!.selectedBackgroundView = UIView.init(frame: cell!.frame)
-            cell!.selectedBackgroundView?.backgroundColor = kColorAppOrange.withAlphaComponent(0.7)
+            cell!.selectedBackgroundView?.backgroundColor = kColorAppMain.withAlphaComponent(0.7)
             cell?.textLabel?.font = UIFont.systemFont(ofSize: DeviceType.IS_IPAD ? 20:16.5)
             cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: DeviceType.IS_IPAD ? 16:12.5)
             cell?.detailTextLabel?.sizeToFit()
@@ -191,9 +189,17 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
             }
             if row == 2 {
                 if #available(iOS 9.0, *) {
-                    let vc = SFSafariViewController(url: URL(string: kGithubURL
+                    let sfvc = SFSafariViewController(url: URL(string: kGithubURL
                         )!, entersReaderIfAvailable: true)
-                    present(vc, animated: true)
+                    if #available(iOS 10.0, *) {
+                        sfvc.preferredBarTintColor = kColorAppMain
+                        sfvc.preferredControlTintColor = UIColor.white
+                    }
+                    if #available(iOS 11.0, *) {
+                        sfvc.dismissButtonStyle = .close
+                        sfvc.navigationItem.largeTitleDisplayMode = .never
+                    }
+                    present(sfvc, animated: true)
                 } else {
                     if UIApplication.shared.canOpenURL(URL.init(string: kGithubURL )!) {
                         UIApplication.shared.openURL(URL.init(string: kGithubURL)!)

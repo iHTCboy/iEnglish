@@ -35,6 +35,10 @@ extension ITAboutAppVC
     func setupUI() {
         self.title = "关于\(kAppName)"
         
+        if #available(iOS 11.0, *) {
+            self.navigationItem.largeTitleDisplayMode = .never
+        }
+        
         guard (self.logoImgView != nil) else {
             return
         }
