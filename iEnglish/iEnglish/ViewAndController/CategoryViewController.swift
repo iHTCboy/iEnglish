@@ -17,7 +17,13 @@ class CategoryViewController: UIViewController {
         
         category = db.query(sql: "select * from Category")
         
-        print(category)
+//        print(category)
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationController?.navigationBar.largeTitleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white ]
+        } else {
+            // Fallback on earlier versions
+        }
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +92,7 @@ extension CategoryViewController : UITableViewDelegate, UITableViewDataSource {
         let dictionary = category[indexPath.section] as [String : Any]
         
         cell?.textLabel?.text = dictionary["en"] as? String
-        cell?.detailTextLabel?.text = dictionary["zh_CN"] as? String
+        cell?.detailTextLabel?.text = dictionary[TCUserDefaults.shared.getIELanguage()] as? String
         
         return cell!
     }
