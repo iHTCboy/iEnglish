@@ -34,7 +34,7 @@ let kAppAppleId = "1236558125"
 let kAppDownloadURl = "https://itunes.apple.com/cn/app/" + kAppName + "/id" + kAppAppleId + "?l=zh&ls=1&mt=8"
 let kReviewAction = "&action=write-review"
 let kGithubURL = "https://github.com/iHTCboy/" + kAppName
-let kEmail = "ihetiancong@163.com"
+let kEmail = "ihetiancong@qq.com"
 let kStatusBarH: CGFloat = 20
 let kNavBarH: CGFloat = 40
 let kTitleViewH : CGFloat = 40

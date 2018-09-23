@@ -19,6 +19,8 @@
 		6D1ABA251EE84D430026054A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA241EE84D430026054A /* Security.framework */; };
 		6D1ABA271EE84D4A0026054A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA261EE84D4A0026054A /* CoreLocation.framework */; };
 		6D1ABA291EE84DBA0026054A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA281EE84DBA0026054A /* SystemConfiguration.framework */; };
+		6D2C0FB62157F31700C37783 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D2C0FB42157F31700C37783 /* README.md */; };
+		6D2C0FB72157F31700C37783 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6D2C0FB52157F31700C37783 /* LICENSE */; };
 		6D4429421EE5A3760030534D /* TCTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4429411EE5A3760030534D /* TCTabbarController.swift */; };
 		6D4429441EE5A4AD0030534D /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4429431EE5A4AD0030534D /* SettingController.swift */; };
 		6D4429461EE5ACE00030534D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4429451EE5ACE00030534D /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -76,6 +78,8 @@
 		6D1ABA241EE84D430026054A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6D1ABA261EE84D4A0026054A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6D1ABA281EE84DBA0026054A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6D2C0FB42157F31700C37783 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
+		6D2C0FB52157F31700C37783 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../../LICENSE; sourceTree = "<group>"; };
 		6D4429411EE5A3760030534D /* TCTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCTabbarController.swift; sourceTree = "<group>"; };
 		6D4429431EE5A4AD0030534D /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		6D4429451EE5ACE00030534D /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
@@ -183,6 +187,8 @@
 				6DA062841EE43D6F00B3F5D9 /* Assets.xcassets */,
 				6DA062861EE43D6F00B3F5D9 /* LaunchScreen.storyboard */,
 				6DA062891EE43D6F00B3F5D9 /* Info.plist */,
+				6D2C0FB52157F31700C37783 /* LICENSE */,
+				6D2C0FB42157F31700C37783 /* README.md */,
 			);
 			path = iEnglish;
 			sourceTree = "<group>";
@@ -410,8 +416,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D2C0FB62157F31700C37783 /* README.md in Resources */,
 				6DA062CC1EE450F400B3F5D9 /* iEnglish.db3 in Resources */,
 				6DA062881EE43D6F00B3F5D9 /* LaunchScreen.storyboard in Resources */,
+				6D2C0FB72157F31700C37783 /* LICENSE in Resources */,
 				6DA062851EE43D6F00B3F5D9 /* Assets.xcassets in Resources */,
 				6DA062AD1EE443B200B3F5D9 /* iEnglish.bundle in Resources */,
 				6DCB7F031EE7013A0074FD00 /* ITAboutAppVC.xib in Resources */,
