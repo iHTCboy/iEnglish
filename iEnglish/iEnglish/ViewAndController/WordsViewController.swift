@@ -41,7 +41,6 @@ class WordsViewController: UIViewController {
         NSLayoutConstraint.activate(widthConstraints)
         NSLayoutConstraint.activate(heightConstraints)
         
-//        self.tableView.tableHeaderView = self.searchVC.searchBar
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = self.searchVC
         } else {

@@ -118,9 +118,9 @@ public extension UIDevice {
         case "iPhone8,4":                               return "iPhone SE"
         case "iPhone9,1", "iPhone9,3":                  return "iPhone 7"
         case "iPhone9,2", "iPhone9,4":                  return "iPhone 7 Plus"
-        case "iPhone10,1", "iPhone9,4":                 return "iPhone 8"
-        case "iPhone10,2", "iPhone9,5":                 return "iPhone 8 Plus"
-        case "iPhone10,3", "iPhone9,6":                 return "iPhone X"
+        case "iPhone10,1", "iPhone10,4":                 return "iPhone 8"
+        case "iPhone10,2", "iPhone10,5":                 return "iPhone 8 Plus"
+        case "iPhone10,3", "iPhone10,6":                 return "iPhone X"
         
         //iPad 系列
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
@@ -137,8 +137,6 @@ public extension UIDevice {
         case "iPad4,9":                                 return "iPad Mini 3"
         case "iPad5,1":                                 return "iPad Mini 4 (WiFi)"
         case "iPad5,2":                                 return "iPad Mini 4 (LTE)"
-        case "iPad5,3":                                 return "iPad Air 2"
-        case "iPad5,4":                                 return "iPad Air 2"
         case "iPad6,3":                                 return "iPad Pro 9.7"
         case "iPad6,4":                                 return "iPad Pro 9.7"
         case "iPad6,7":                                 return "iPad Pro 12.9"

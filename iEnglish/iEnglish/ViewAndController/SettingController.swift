@@ -38,7 +38,7 @@ class SettingController: UIViewController {
     //你想知道的单词都在这里
     fileprivate var titles = ["0": "单词搜索:更多单词搜索,语言设置:设置英文单词翻译成的语言",
         "1": "应用内评分:欢迎给\(kAppName)打评分！,AppStore评价:欢迎给\(kAppName)写评论!,分享给朋友:与身边的好友一起分享！",
-        "2":"意见反馈:欢迎到AppStore提需求或bug问题,邮件联系:如有问题欢迎来信,开源地址:未来逐步开放代码，欢迎关注,关于应用:\(kAppName)"] as [String : String]
+        "2": "隐私条款:用户服务使用说明,意见反馈:欢迎到AppStore提需求或bug问题,邮件联系:如有问题欢迎来信,开源地址:未来逐步开放代码，欢迎关注,关于应用:\(kAppName)"] as [String : String]
     
 }
 
@@ -180,33 +180,20 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
             break
         case 2:
             if row == 0 {
-                gotoAppstore(isAssessment: true)
+                openWebview(url: "https://raw.githubusercontent.com/iHTCboy/iEnglish/master/LICENSE")
             }
             if row == 1 {
+                gotoAppstore(isAssessment: true)
+            }
+            if row == 2 {
                 let message = "欢迎来信，写下你的问题吧" + "\n\n\n\n" + kMarginLine + "\n 当前\(kAppName)版本：" + KAppVersion + "， 系统版本：" + String(Version.SYS_VERSION_FLOAT) + "， 设备信息：" + UIDevice.init().modelName
                 
                 ITCommonAPI.sharedInstance.sendEmail(recipients: [kEmail], messae: message, vc: self)
             }
-            if row == 2 {
-                if #available(iOS 9.0, *) {
-                    let sfvc = SFSafariViewController(url: URL(string: kGithubURL
-                        )!, entersReaderIfAvailable: true)
-                    if #available(iOS 10.0, *) {
-                        sfvc.preferredBarTintColor = kColorAppMain
-                        sfvc.preferredControlTintColor = UIColor.white
-                    }
-                    if #available(iOS 11.0, *) {
-                        sfvc.dismissButtonStyle = .close
-                        sfvc.navigationItem.largeTitleDisplayMode = .never
-                    }
-                    present(sfvc, animated: true)
-                } else {
-                    if UIApplication.shared.canOpenURL(URL.init(string: kGithubURL )!) {
-                        UIApplication.shared.openURL(URL.init(string: kGithubURL)!)
-                    }
-                }
-            }
             if row == 3 {
+                openWebview(url: kGithubURL)
+            }
+            if row == 4 {
                 let vc = ITAboutAppVC()
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -216,8 +203,26 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
         default: break
             
         }
-        
-        
-        
+    }
+    
+    
+    func openWebview(url: String) {
+        if #available(iOS 9.0, *) {
+            let sfvc = SFSafariViewController(url: URL(string: url
+                )!, entersReaderIfAvailable: true)
+            if #available(iOS 10.0, *) {
+                sfvc.preferredBarTintColor = kColorAppMain
+                sfvc.preferredControlTintColor = UIColor.white
+            }
+            if #available(iOS 11.0, *) {
+                sfvc.dismissButtonStyle = .close
+                sfvc.navigationItem.largeTitleDisplayMode = .never
+            }
+            present(sfvc, animated: true)
+        } else {
+            if UIApplication.shared.canOpenURL(URL.init(string: url )!) {
+                UIApplication.shared.openURL(URL.init(string: url)!)
+            }
+        }
     }
 }
