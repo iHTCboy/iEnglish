@@ -20,8 +20,8 @@ class SQLTable:NSObject {
 	/// Static variable indicating the table name - used in class methods since the instance variable `table` is not accessible in class methods.
 	private static var table:String {
 		let cls = "\(classForCoder())".lowercased()
-		let ndx = cls.characters.index(before:cls.endIndex)
-		let tnm = cls.hasSuffix("y") ? cls.substring(to:ndx) + "ies" : cls + "s"
+		let ndx = cls.index(before:cls.endIndex)
+		let tnm = cls.hasSuffix("y") ? cls.prefix(upTo:ndx) + "ies" : cls + "s"
 		return tnm
 	}
 	
@@ -30,8 +30,8 @@ class SQLTable:NSObject {
 		super.init()
 		// Table name
 		let cls = "\(classForCoder)".lowercased()
-		let ndx = cls.characters.index(before:cls.endIndex)
-		let tnm = cls.hasSuffix("y") ? cls.substring(to:ndx) + "ies" : cls + "s"
+		let ndx = cls.index(before:cls.endIndex)
+		let tnm = cls.hasSuffix("y") ? cls.prefix(upTo:ndx) + "ies" : cls + "s"
 		self.table = tnm
 		let verified = SQLTable.verified[table]
 		if verified == nil || !verified! {
@@ -258,7 +258,7 @@ class SQLTable:NSObject {
 		let (sql, params) = getSQL(data:data, forInsert:insert)
 		let rc = db.execute(sql:sql, parameters:params)
 		if rc == 0 {
-			NSLog("Error saving record!")
+			print("Error saving record!")
 			return 0
 		}
 		// Update primary key
@@ -389,7 +389,7 @@ class SQLTable:NSObject {
 			sql += wsql
 			params!.append(rid!)
 		}
-//		NSLog("Final SQL: \(sql) with parameters: \(params)")
+//		print("Final SQL: \(sql) with parameters: \(params)")
 		return (sql, params)
 	}
 	

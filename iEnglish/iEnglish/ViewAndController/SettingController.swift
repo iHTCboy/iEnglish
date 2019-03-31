@@ -49,7 +49,7 @@ extension SettingController
         title = "Setting"
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white ]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white ]
         } 
         
         view.addSubview(tableView)
@@ -57,8 +57,8 @@ extension SettingController
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         let views = ["tableView": tableView]
-        let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
+        let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
         NSLayoutConstraint.activate(widthConstraints)
         NSLayoutConstraint.activate(heightConstraints)
     }

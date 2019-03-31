@@ -48,7 +48,7 @@ class SQLiteDB:NSObject {
  
 	/// Output the current SQLite database path
 	override var description:String {
-		return "SQLiteDB: \(path)"
+        return "SQLiteDB: \(path ?? "")"
 	}
 	
 	// MARK:- Public Methods
@@ -97,11 +97,11 @@ class SQLiteDB:NSObject {
 		let error = sqlite3_open(cpath!, &db)
 		if error != SQLITE_OK {
 			// Open failed, close DB and fail
-			NSLog("SQLiteDB - failed to open DB!")
+			print("SQLiteDB - failed to open DB!")
 			sqlite3_close(db)
 			return false
 		}
-		NSLog("SQLiteDB opened!")
+		print("SQLiteDB opened!")
 		return true
 	}
 	
@@ -178,7 +178,7 @@ class SQLiteDB:NSObject {
 			let ud = UserDefaults.standard
 			var launchCount = ud.integer(forKey:"LaunchCount")
 			launchCount -= 1
-			NSLog("SQLiteDB - Launch count \(launchCount)")
+			print("SQLiteDB - Launch count \(launchCount)")
 			var clean = false
 			if launchCount < 0 {
 				clean = true
@@ -192,10 +192,10 @@ class SQLiteDB:NSObject {
 				return
 			}
 			// Clean DB
-			NSLog("SQLiteDB - Optimize DB")
+			print("SQLiteDB - Optimize DB")
 			let sql = "VACUUM; ANALYZE"
 			if CInt(execute(sql:sql)) != SQLITE_OK {
-				NSLog("SQLiteDB - Error cleaning DB")
+				print("SQLiteDB - Error cleaning DB")
 			}
 			sqlite3_close(db)
 			self.db = nil
@@ -217,7 +217,7 @@ class SQLiteDB:NSObject {
 			sqlite3_finalize(stmt)
 			if let error = String(validatingUTF8:sqlite3_errmsg(self.db)) {
 				let msg = "SQLiteDB - failed to prepare SQL: \(sql), Error: \(error)"
-				NSLog(msg)
+				print(msg)
 			}
 			return nil
 		}
@@ -228,13 +228,13 @@ class SQLiteDB:NSObject {
 			let cnt = params!.count
 			if cntParams != CInt(cnt) {
 				let msg = "SQLiteDB - failed to bind parameters, counts did not match. SQL: \(sql), Parameters: \(params!)"
-				NSLog(msg)
+				print(msg)
 				return nil
 			}
 			var flag:CInt = 0
 			// Text & BLOB values passed to a C-API do not work correctly if they are not marked as transient.
 			for ndx in 1...cnt {
-//				NSLog("Binding: \(params![ndx-1]) at Index: \(ndx)")
+//				print("Binding: \(params![ndx-1]) at Index: \(ndx)")
 				// Check for data types
 				if let txt = params![ndx-1] as? String {
 					flag = sqlite3_bind_text(stmt, CInt(ndx), txt, -1, SQLITE_TRANSIENT)
@@ -258,7 +258,7 @@ class SQLiteDB:NSObject {
 					sqlite3_finalize(stmt)
 					if let error = String(validatingUTF8:sqlite3_errmsg(self.db)) {
 						let msg = "SQLiteDB - failed to bind for SQL: \(sql), Parameters: \(params!), Index: \(ndx) Error: \(error)"
-						NSLog(msg)
+						print(msg)
 					}
 					return nil
 				}
@@ -280,7 +280,7 @@ class SQLiteDB:NSObject {
 			sqlite3_finalize(stmt)
 			if let error = String(validatingUTF8:sqlite3_errmsg(self.db)) {
 				let msg = "SQLiteDB - failed to execute SQL: \(sql), Error: \(error)"
-				NSLog(msg)
+				print(msg)
 			}
 			return 0
 		}
@@ -337,7 +337,7 @@ class SQLiteDB:NSObject {
 				let key = columnNames[Int(index)]
 				let type = columnTypes[Int(index)]
 				if let val = getColumnValue(index:index, type:type, stmt:stmt) {
-//						NSLog("Column type:\(type) with value:\(val)")
+//						print("Column type:\(type) with value:\(val)")
 					row[key] = val
 				}
 			}
@@ -366,17 +366,17 @@ class SQLiteDB:NSObject {
 		let realTypes = ["DECIMAL", "DOUBLE", "DOUBLE PRECISION", "FLOAT", "NUMERIC", "REAL"]
 		// Determine type of column - http://www.sqlite.org/c3ref/c_blob.html
 		let buf = sqlite3_column_decltype(stmt, index)
-//		NSLog("SQLiteDB - Got column type: \(buf)")
+//		print("SQLiteDB - Got column type: \(buf)")
 		if buf != nil {
 			var tmp = String(validatingUTF8:buf!)!.uppercased()
 			// Remove bracketed section
 			if let pos = tmp.range(of:"(") {
-				tmp = tmp.substring(to:pos.lowerBound)
+                tmp = String(tmp.prefix(upTo:pos.lowerBound))
 			}
 			// Remove unsigned?
 			// Remove spaces
 			// Is the data type in any of the pre-set values?
-//			NSLog("SQLiteDB - Cleaned up column type: \(tmp)")
+//			print("SQLiteDB - Cleaned up column type: \(tmp)")
 			if intTypes.contains(tmp) {
 				return SQLITE_INTEGER
 			}

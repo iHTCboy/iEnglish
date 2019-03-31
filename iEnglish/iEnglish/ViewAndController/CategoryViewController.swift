@@ -20,14 +20,14 @@ class CategoryViewController: UIViewController {
 //        print(category)
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white ]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white ]
         }
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         let views = ["tableView": tableView]
-        let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
+        let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
         NSLayoutConstraint.activate(widthConstraints)
         NSLayoutConstraint.activate(heightConstraints)
         
@@ -54,7 +54,7 @@ class CategoryViewController: UIViewController {
     lazy var tableView: UITableView = {
         var tableView = UITableView.init(frame: CGRect.init(x: 0, y: 0, width: kScreenW, height: kScreenH), style: .grouped)
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.estimatedRowHeight = 80
         tableView.sectionFooterHeight = 5;
         tableView.sectionHeaderHeight = 5;

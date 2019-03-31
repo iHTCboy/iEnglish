@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         setupBaseUI()
         
@@ -87,7 +87,7 @@ extension AppDelegate {
     func setupBaseUI() {
         let ui = UINavigationBar.appearance()
         ui.tintColor = UIColor.white
-        ui.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        ui.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         ui.barTintColor = kColorAppMain
         
         UIApplication.shared.setStatusBarHidden(false, with: .none)

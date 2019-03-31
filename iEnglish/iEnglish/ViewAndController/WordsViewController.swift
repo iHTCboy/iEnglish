@@ -30,14 +30,14 @@ class WordsViewController: UIViewController {
         //print(words)
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
-            navigationController?.navigationBar.largeTitleTextAttributes = [ NSForegroundColorAttributeName : UIColor.white ]
+            navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white ]
         }
         
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         let views = ["tableView": tableView]
-        let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let widthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tableView]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
+        let heightConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[tableView]-0-|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: views)
         NSLayoutConstraint.activate(widthConstraints)
         NSLayoutConstraint.activate(heightConstraints)
         
@@ -103,7 +103,7 @@ class WordsViewController: UIViewController {
         if #available(iOS 11.0, *) {
             searchVC.searchBar.tintColor = UIColor.white
             searchVC.searchBar.barTintColor = UIColor.white
-            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSForegroundColorAttributeName: kColorAppMain]
+            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: kColorAppMain]
             if let textfield = searchVC.searchBar.value(forKey: "searchField") as? UITextField {
                 textfield.tintColor = kColorAppMain
                 if let backgroundview = textfield.subviews.first {
@@ -154,11 +154,11 @@ extension WordsViewController
             if let wordString = dictionary["en"] as? String {
                 let upperWord = wordString.uppercased()
                 let indexString = upperWord.index(upperWord.startIndex, offsetBy: 1)
-                let firstWord = upperWord.substring(to: indexString)
+                let firstWord = upperWord.prefix(upTo: indexString)
                 if firstWord != keyWord || index == words.count-1 {
-                    print(keyWord)
+                    //print(keyWord)
                     sortWordDic.updateValue(indexNumber, forKey: keyWord)
-                    keyWord = firstWord
+                    keyWord = String(firstWord)
                     indexNumber += number
                     number = 1
                 }else{
@@ -169,7 +169,7 @@ extension WordsViewController
         //print(sortWordDic)
     }
     
-    func clickedBtn(btn: UIButton) {
+    @objc func clickedBtn(btn: UIButton) {
         let dictionary = self.resultsVC.isShowing ? self.resultsVC.results[btn.tag] as [String : Any] : words[btn.tag] as [String : Any]
         let word = dictionary["en"] as? String
         var url = "https://m.youdao.com/dict?q=" + word!
@@ -323,7 +323,7 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         cell?.textLabel?.text = dictionary["en"] as? String
         let detial = (dictionary[TCUserDefaults.shared.getIELanguage()] as? String)!
         let detialString = NSMutableAttributedString.init(string: detial)
-        let part = NSMutableAttributedString(string: " . ", attributes: [NSForegroundColorAttributeName: UIColor.clear])
+        let part = NSMutableAttributedString(string: " . ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.clear])
         detialString.append(part)
         cell?.detailTextLabel?.attributedText = detialString
         
