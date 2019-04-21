@@ -48,7 +48,7 @@ extension ITAboutAppVC
         self.logoImgView.layer.masksToBounds = true
         self.appNameLbl.text = kAppName
         self.versionLbl.text = "v" + KAppVersion
-        self.contentLbl.text = "\(kAppName) 为一款英语初学者提供基础英文单词学习的应用，正确的单词发音、必备的分类单词，不断努力打造更简单更好方式呈现更有趣的英语知识，让大家在零碎时间也可以快速和简单的学习get!"
+        self.contentLbl.text = "\(kAppName) 是一款为英语初学者提供基础英文单词学习的应用，正确的单词发音、必备的分类单词，不断努力打造更简单更好方式呈现更有趣的英语知识，让大家在零碎时间也可以快速和简单的学习get!"
         let formatter = DateFormatter.init()
         formatter.dateFormat = "yyyy"
         let yearString = formatter.string(from: Date.init())

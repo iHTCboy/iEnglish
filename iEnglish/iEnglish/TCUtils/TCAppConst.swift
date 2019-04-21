@@ -121,7 +121,10 @@ public extension UIDevice {
         case "iPhone10,1", "iPhone10,4":                 return "iPhone 8"
         case "iPhone10,2", "iPhone10,5":                 return "iPhone 8 Plus"
         case "iPhone10,3", "iPhone10,6":                 return "iPhone X"
-        
+        case "iPhone11,1", "iPhone11,2":                return "iPhone XS"
+        case "iPhone11,4", "iPhone11,6":                return "iPhone XS Max"
+        case "iPhone11,8", "iPhone11,9":                return "iPhone XR"
+            
         //iPad 系列
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
         case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3"
@@ -152,8 +155,8 @@ public extension UIDevice {
         case "AppleTV2,1":                              return "Apple TV 2G"
         case "AppleTV3,1":                              return "Apple TV 3"
         case "AppleTV3,2":                              return "Apple TV 3 (2013)"
-        case "AppleTV5,3":                              return "Apple TV"
-            
+        case "AppleTV5,3":                              return "Apple TV 4"
+        case "AppleTV6,2":                              return "Apple TV 4K"
         case "i386", "x86_64":                          return "Simulator"
         default:                                        return identifier
         }
