@@ -11,3 +11,12 @@ iEnglish - Beginner Essential Vocabulary, 3000 Entry Words and Vocabulary Classi
 
 ### 下载地址
 收费人民币1元以表示意 [iOS App Store](https://itunes.apple.com/cn/app/ienglish-初学者必备词汇/id1236558125?l=zh&ls=1&mt=8)
+
+
+### 应用截图
+![](screenshot/01.png)
+![](screenshot/02.png)
+![](screenshot/03.png)
+![](screenshot/04.png)
+![](screenshot/05.png)
+![](screenshot/06.png)
