@@ -65,7 +65,7 @@ extension AppDelegate {
         #else
             let statTracker = BaiduMobStat.default()
             statTracker?.channelId = "AppStore"
-            statTracker?.shortAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+        statTracker?.shortAppVersion = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
             statTracker?.start(withAppId: "3cef2f4995")
             
             let formatter = DateFormatter()
@@ -78,7 +78,8 @@ extension AppDelegate {
             statTracker?.logEvent("systemVersion", eventLabel: UIDevice.current.systemVersion)
             statTracker?.logEvent("DateSystemVersion", eventLabel: currentDate + " " + UIDevice.current.systemVersion)
             statTracker?.logEvent("DateAndDeviceName", eventLabel: currentDate + " " + UIDevice.current.name)
-            statTracker?.logEvent("Devices", eventLabel:UIDevice.current.name)
+            statTracker?.logEvent("Devices", eventLabel: UIDevice.current.name)
+            statTracker?.logEvent("AppName", eventLabel:( Bundle.main.infoDictionary?["CFBundleName"] as! String))
             
         #endif
         
