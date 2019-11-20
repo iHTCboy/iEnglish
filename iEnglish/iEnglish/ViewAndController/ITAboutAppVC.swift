@@ -39,6 +39,10 @@ extension ITAboutAppVC
             self.navigationItem.largeTitleDisplayMode = .never
         }
         
+        if #available(iOS 13.0, *) {
+            self.view.backgroundColor = .secondarySystemBackground
+        }
+        
         guard (self.logoImgView != nil) else {
             return
         }

@@ -119,7 +119,11 @@ extension ITAdvancelDetailViewController : UITableViewDelegate, UITableViewDataS
         let titile = (dict["title"] as! String)
         let subtitle = dict["subtitle"] as! String
         let view = TableHeaderView.initView(title: titile, subtitle: subtitle, height: 40)
-        view.backgroundColor = .clear
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .groupTableViewBackground
+        } else {
+            view.backgroundColor = .clear
+        }
         return view
     }
 
@@ -129,7 +133,12 @@ extension ITAdvancelDetailViewController : UITableViewDelegate, UITableViewDataS
         if (cell  == nil) {
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "ITAdvanceLearningViewCell")
             cell?.accessoryType = .disclosureIndicator
-            cell?.backgroundColor = .white
+            if #available(iOS 13.0, *) {
+                cell?.textLabel?.textColor = .label
+                cell?.backgroundColor = .quaternarySystemFill
+            } else {
+                cell?.backgroundColor = .white
+            }
             cell?.selectedBackgroundView = UIView.init(frame: cell!.frame)
             cell?.selectedBackgroundView?.backgroundColor = kColorAppOrange.withAlphaComponent(0.7)
             cell?.textLabel?.font = UIFont.systemFont(ofSize: DeviceType.IS_IPAD ? 20:16.5)
