@@ -86,11 +86,21 @@ extension AppDelegate {
     }
     
     func setupBaseUI() {
-        let ui = UINavigationBar.appearance()
-        ui.tintColor = UIColor.white
-        ui.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        ui.barTintColor = kColorAppMain
-        
+        let appearance = UINavigationBar.appearance()
+        appearance.tintColor = UIColor.white
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        appearance.barTintColor = kColorAppMain
+            
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.backgroundColor = kColorAppMain
+            appearance.standardAppearance = navBarAppearance;
+            appearance.scrollEdgeAppearance = navBarAppearance
+        }
+
         UIApplication.shared.setStatusBarHidden(false, with: .none)
     }
     

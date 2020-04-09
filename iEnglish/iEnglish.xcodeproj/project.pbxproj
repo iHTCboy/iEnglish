@@ -274,8 +274,8 @@
 		6DA062BA1EE4467600B3F5D9 /* TCUtils */ = {
 			isa = PBXGroup;
 			children = (
-				6D06A3A0227C7A5000606D2A /* IAppleServiceUtil.swift */,
 				6DA062B61EE4453500B3F5D9 /* iEnglish-Bridging-Header.h */,
+				6D06A3A0227C7A5000606D2A /* IAppleServiceUtil.swift */,
 				6DA062BB1EE4469B00B3F5D9 /* TCAppConst.swift */,
 				6DCB7EFE1EE701050074FD00 /* ITCommonAPI.swift */,
 				6DBAE2811EED61B2003ABE7E /* TCUserDefaults.swift */,
@@ -643,7 +643,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 2019.11.16;
+				CURRENT_PROJECT_VERSION = 2020.03.06;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = iEnglish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -666,7 +666,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 2019.11.16;
+				CURRENT_PROJECT_VERSION = 2020.03.06;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = iEnglish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -693,7 +693,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.ihtc.iEnglishTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iEnglish.app/iEnglish";
 			};
 			name = Debug;
@@ -708,7 +708,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.ihtc.iEnglishTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iEnglish.app/iEnglish";
 			};
 			name = Release;
@@ -722,7 +722,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.ihtc.iEnglishUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = iEnglish;
 			};
 			name = Debug;
@@ -736,7 +736,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cc.ihtc.iEnglishUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = iEnglish;
 			};
 			name = Release;
