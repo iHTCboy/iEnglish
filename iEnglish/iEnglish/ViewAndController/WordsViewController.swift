@@ -201,7 +201,7 @@ extension WordsViewController
                 sfvc.dismissButtonStyle = .close
                 sfvc.navigationItem.largeTitleDisplayMode = .never
             }
-            self.navigationController?.pushViewController(sfvc, animated: true)
+            view.window!.rootViewController!.present(sfvc, animated: true)
             
         } else {
             // Fallback on earlier versions
@@ -209,6 +209,14 @@ extension WordsViewController
                 UIApplication.shared.openURL(URLs)
             }
         }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
@@ -308,6 +316,10 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
             if #available(iOS 13, *) {
                 cell?.backgroundColor = .secondarySystemGroupedBackground
             }
+            #if targetEnvironment(macCatalyst)
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: 20)
+            cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
+            #endif
         }
         
         let btn = UIButton.init(type: .detailDisclosure)

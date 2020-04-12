@@ -57,32 +57,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     func startBaiduMobStat() {
-        
+        #if !targetEnvironment(macCatalyst)
+                let statTracker = BaiduMobStat.default()
         #if DEBUG
-            print("Debug modle")
-            //statTracker?.channelId = "Debug"
-            //statTracker.enableDebugOn = true;
+                print("Debug modle")
+                //statTracker.enableDebugOn = true;
+                statTracker.channelId = "Debug"
         #else
-            let statTracker = BaiduMobStat.default()
-            statTracker?.channelId = "AppStore"
-        statTracker?.shortAppVersion = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
-            statTracker?.start(withAppId: "3cef2f4995")
-            
-            let formatter = DateFormatter()
-            formatter.locale = Locale.current
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            let currentDate = formatter.string(from: Date())
-            
-            // 自定义事件
-            statTracker?.logEvent("usermodelName", eventLabel: UIDevice.init().modelName)
-            statTracker?.logEvent("systemVersion", eventLabel: UIDevice.current.systemVersion)
-            statTracker?.logEvent("DateSystemVersion", eventLabel: currentDate + " " + UIDevice.current.systemVersion)
-            statTracker?.logEvent("DateAndDeviceName", eventLabel: currentDate + " " + UIDevice.current.name)
-            statTracker?.logEvent("Devices", eventLabel: UIDevice.current.name)
-            statTracker?.logEvent("AppName", eventLabel:( Bundle.main.infoDictionary?["CFBundleName"] as! String))
-            
+                statTracker.shortAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "None"
+                statTracker.channelId = "AppStore"
+                statTracker.start(withAppId: "3cef2f4995")
+                let formatter = DateFormatter()
+                formatter.locale = Locale.current
+                formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                let currentDate = formatter.string(from: Date())
+
+                // 自定义事件
+                statTracker.logEvent("usermodelName", eventLabel: UIDevice.init().modelName)
+                statTracker.logEvent("systemVersion", eventLabel: UIDevice.current.systemVersion)
+                statTracker.logEvent("DateSystemVersion", eventLabel: currentDate + " " + UIDevice.current.systemVersion)
+                statTracker.logEvent("DateAndDeviceName", eventLabel: currentDate + " " + UIDevice.current.name)
+                statTracker.logEvent("Devices", eventLabel:UIDevice.current.name)
+                statTracker.logEvent("AppName", eventLabel:( Bundle.main.infoDictionary?["CFBundleName"] as! String))
         #endif
-        
+        #endif
     }
     
     func setupBaseUI() {
@@ -102,6 +100,12 @@ extension AppDelegate {
         }
 
         UIApplication.shared.setStatusBarHidden(false, with: .none)
+        
+        #if targetEnvironment(macCatalyst)
+        let tabbar = UITabBarItem.appearance()
+        let font = UIFont.systemFont(ofSize: 18)
+        tabbar.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        #endif
     }
     
     

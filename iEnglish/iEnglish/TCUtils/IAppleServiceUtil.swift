@@ -13,8 +13,14 @@ import SafariServices
 class IAppleServiceUtil: NSObject {
     class func openWebView(url: String, tintColor: UIColor, vc: UIViewController) {
         if #available(iOS 9.0, *) {
-            let sf = SFSafariViewController(url: URL(string: url
-                )!, entersReaderIfAvailable: true)
+            var sf: SFSafariViewController
+            if #available(iOS 13.0, *) {
+                let config = SFSafariViewController.Configuration()
+                config.entersReaderIfAvailable = true
+                sf = SFSafariViewController.init(url: URL(string: url)!, configuration: config)
+            } else {
+                sf = SFSafariViewController(url: URL(string: url)!, entersReaderIfAvailable: true)
+            }
             if #available(iOS 10.0, *) {
                 sf.preferredBarTintColor = tintColor
                 sf.preferredControlTintColor = UIColor.white
@@ -61,7 +67,11 @@ class IAppleServiceUtil: NSObject {
     class func openAppstore(url: String, isAssessment: Bool) {
         let iURL = URL.init(string: url + (isAssessment ? "&action=write-review": ""))!
         if UIApplication.shared.canOpenURL(iURL) {
-            UIApplication.shared.openURL(iURL)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(iURL, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(iURL)
+            }
         }
     }
     
@@ -167,10 +177,36 @@ extension UIViewController {
             vc = vc.presentedViewController!;
         }
         
-        return vc;
+        return vc
     }
     
     func currentRootViewController() -> UIViewController {
-        return UIApplication.shared.keyWindow!.rootViewController ?? self
+        return UIViewController.keyWindowHTC()!.rootViewController ?? self
+    }
+    
+    /// The app's key window taking into consideration apps that support multiple scenes.
+    class func keyWindowHTC() -> UIWindow? {
+        var foundWindow: UIWindow? = nil
+        for window in UIApplication.shared.windows {
+            if (window.isKeyWindow) {
+                foundWindow = window;
+                break
+            }
+        }
+        
+        if  foundWindow == nil {
+            foundWindow = UIApplication.shared.keyWindow
+        }
+        
+        if  foundWindow == nil {
+            foundWindow = UIApplication.shared.windows.first
+        }
+        
+        // 先兼容iPhone设备
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            foundWindow = UIApplication.shared.keyWindow
+        }
+        
+        return foundWindow
     }
 }

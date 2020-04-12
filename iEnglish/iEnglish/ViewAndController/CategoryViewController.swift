@@ -64,7 +64,13 @@ class CategoryViewController: UIViewController {
         return tableView
     }()
     
-    //    let Words = db.query(sql: "select * from Words")
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 
@@ -87,6 +93,10 @@ extension CategoryViewController : UITableViewDelegate, UITableViewDataSource {
             cell?.accessoryType = .disclosureIndicator
             cell!.selectedBackgroundView = UIView.init(frame: cell!.frame)
             cell!.selectedBackgroundView?.backgroundColor = kColorAppMain.withAlphaComponent(0.7)
+            #if targetEnvironment(macCatalyst)
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: 20)
+            cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
+            #endif
         }
         
         let dictionary = category[indexPath.section] as [String : Any]

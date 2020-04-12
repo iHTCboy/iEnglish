@@ -64,9 +64,22 @@ extension SettingController
     }
     
     func gotoAppstore(isAssessment: Bool) {
-        if UIApplication.shared.canOpenURL(URL.init(string: kAppDownloadURl + (isAssessment ? kReviewAction: ""))!) {
-            UIApplication.shared.openURL(URL.init(string: kAppDownloadURl + (isAssessment ? kReviewAction: ""))!)
+        let iURL = URL.init(string: kAppDownloadURl + (isAssessment ? kReviewAction: ""))!
+        if UIApplication.shared.canOpenURL(iURL) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(iURL, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(iURL)
+            }
         }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 
@@ -98,6 +111,10 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
             cell?.textLabel?.font = UIFont.systemFont(ofSize: DeviceType.IS_IPAD ? 20:16.5)
             cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: DeviceType.IS_IPAD ? 16:12.5)
             cell?.detailTextLabel?.sizeToFit()
+            #if targetEnvironment(macCatalyst)
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: 20)
+            cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
+            #endif
         }
         
         let string = self.titles["\(indexPath.section)"]
@@ -141,7 +158,7 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
                         sfvc.dismissButtonStyle = .close
                         sfvc.navigationItem.largeTitleDisplayMode = .never
                     }
-                    self.navigationController?.pushViewController(sfvc, animated: true)
+                    view.window!.rootViewController!.present(sfvc, animated: true)
                 } else {
                     // Fallback on earlier versions
                     if UIApplication.shared.canOpenURL(URLs) {
@@ -218,8 +235,14 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
     
     func openWebview(url: String) {
         if #available(iOS 9.0, *) {
-            let sfvc = SFSafariViewController(url: URL(string: url
-                )!, entersReaderIfAvailable: true)
+            var sfvc: SFSafariViewController
+            if #available(iOS 13.0, *) {
+                let config = SFSafariViewController.Configuration()
+                config.entersReaderIfAvailable = true
+                sfvc = SFSafariViewController.init(url: URL(string: url)!, configuration: config)
+            } else {
+                sfvc = SFSafariViewController(url: URL(string: url)!, entersReaderIfAvailable: true)
+            }
             if #available(iOS 10.0, *) {
                 sfvc.preferredBarTintColor = kColorAppMain
                 sfvc.preferredControlTintColor = UIColor.white

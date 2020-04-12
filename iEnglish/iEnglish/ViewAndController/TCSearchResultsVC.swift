@@ -48,6 +48,10 @@ class TCSearchResultsVC: UITableViewController {
             if #available(iOS 13.0, *) {
                 cell?.backgroundColor = .secondarySystemGroupedBackground
             }
+            #if targetEnvironment(macCatalyst)
+            cell?.textLabel?.font = UIFont.systemFont(ofSize: 20)
+            cell?.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
+            #endif
         }
         
         return cell!
