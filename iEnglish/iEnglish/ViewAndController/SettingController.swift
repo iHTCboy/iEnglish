@@ -36,7 +36,7 @@ class SettingController: UIViewController {
     }()
     
     //你想知道的单词都在这里
-    fileprivate var titles = ["0": "单词搜索:更多单词搜索,语言设置:设置英文单词翻译成的语言",
+    fileprivate var titles = ["0": "单词搜索:更多单词搜索,语言设置:设置英文单词翻译成的语言,\(HTCLocalized("主题外观")):暗黑or浅色",
         "1": "应用内评分:欢迎给\(kAppName)打评分！,AppStore评价:欢迎给\(kAppName)写评论!,分享给朋友:与身边的好友一起分享！",
         "2": "隐私条款:用户服务使用说明,意见反馈:欢迎到AppStore提需求或bug问题,邮件联系:如有问题欢迎来信,开源地址:现已开源代码，欢迎关注&学习,更多应用:更多开发者内容推荐,关于应用:\(kAppName)"] as [String : String]
     
@@ -107,6 +107,10 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
         cell!.textLabel?.text = titleA?[0]
         cell?.detailTextLabel?.text = titleA?[1]
         
+//        if indexPath.section == 0 && indexPath.row == 2 {
+//            cell?.detailTextLabel?.text = HTCLocalized(IHTCUserDefaults.shared.getAppAppearance().rawValue)
+//        }
+        
         return cell!
     }
     
@@ -148,7 +152,12 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
             if row == 1 {
                 let vc = IELanguageTableViewController()
                 vc.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(vc, animated: true)
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            if row == 2 {
+                let vc = IHTCAppearanceVC()
+                vc.hidesBottomBarWhenPushed = true
+                navigationController?.pushViewController(vc, animated: true)
             }
             break;
         case 1:
@@ -169,12 +178,6 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
                 let string = "Hello, \(kAppName)! 这是英语初学者必备的单词学习的好工具，强烈推荐给你哦！希望它能成为你英语学习的快速阶梯！" + "iOS下载链接：" + kAppDownloadURl
                 let activityController = UIActivityViewController(activityItems: [image ,url!,string], applicationActivities: nil)
                 self.present(activityController, animated: true, completion: nil)
-                
-                //                ITCommonAPI().checkAppUpdate(newHandler: { (isNew, version, error) in
-                //                    if isNew {
-                //
-                //                    }
-                //                })
             }
             
             break

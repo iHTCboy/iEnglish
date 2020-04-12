@@ -47,6 +47,9 @@ class IELanguageTableViewController: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: "IELanguageTableViewCell")
         if (cell  == nil) {
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "IELanguageTableViewCell")
+            if #available(iOS 13, *) {
+                cell?.backgroundColor = .secondarySystemGroupedBackground
+            }
         }
         
         cell?.accessoryType = .none

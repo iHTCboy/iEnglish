@@ -1,0 +1,16 @@
+PODS:
+  - BaiduMobStatCodeless (5.2.2)
+
+DEPENDENCIES:
+  - BaiduMobStatCodeless
+
+SPEC REPOS:
+  trunk:
+    - BaiduMobStatCodeless
+
+SPEC CHECKSUMS:
+  BaiduMobStatCodeless: bfb398c6c2054b07f97bed51ddf0694311606324
+
+PODFILE CHECKSUM: 2f6ae4e66b9191a92744ff3bd96ce7dd2f1cdf8f
+
+COCOAPODS: 1.8.4

@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'iEnglish' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for iEnglish
+  pod 'BaiduMobStatCodeless' #无埋点SDK
+
+  target 'iEnglishTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'iEnglishUITests' do
+    # Pods for testing
+  end
+
+end

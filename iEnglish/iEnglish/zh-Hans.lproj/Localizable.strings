@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  iEnglish
+
+  Created by HTC on 2020/4/12.
+  Copyright © 2020 iHTCboy. All rights reserved.
+*/
+
+
+"Display Appearance" = "主题外观";
+"Follow System" = "跟随系统";
+"Light Style" = "浅色主题";
+"Dark Style" = "深色主题";

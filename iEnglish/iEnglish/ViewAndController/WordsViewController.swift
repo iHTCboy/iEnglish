@@ -16,15 +16,9 @@ class WordsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 13.0, *) {
-            let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            navBarAppearance.backgroundColor = kColorAppMain
-            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
-            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-        }
+        // 设置默认主题
+        let IHTCUD = IHTCUserDefaults.shared
+        IHTCUD.setDefaultAppAppearance(style: IHTCUD.getAppAppearance())
         
         if title == nil {
             title = kAppName
@@ -91,7 +85,6 @@ class WordsViewController: UIViewController {
         tableView.sectionIndexColor = kColorAppMain
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.sectionIndexTrackingBackgroundColor = KColorAPPRed.withAlphaComponent(0.3)
-//        tableView.register(UINib.init(nibName: "ITQuestionListViewCell", bundle: Bundle.main), forCellReuseIdentifier: "ITQuestionListViewCell")
         return tableView
     }()
     
@@ -113,9 +106,17 @@ class WordsViewController: UIViewController {
         if #available(iOS 11.0, *) {
             searchVC.searchBar.tintColor = UIColor.white
             searchVC.searchBar.barTintColor = UIColor.white
-            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: kColorAppMain]
+            if #available(iOS 13, *) {
+                UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            } else {
+                UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: kColorAppMain]
+            }
             if let textfield = searchVC.searchBar.value(forKey: "searchField") as? UITextField {
-                textfield.tintColor = kColorAppMain
+                if #available(iOS 13, *) {
+                    textfield.tintColor = .white
+                } else {
+                    textfield.tintColor = kColorAppMain
+                }
                 if let backgroundview = textfield.subviews.first {
                     // Background color
                     backgroundview.backgroundColor = UIColor.white
@@ -182,9 +183,9 @@ extension WordsViewController
     @objc func clickedBtn(btn: UIButton) {
         let dictionary = self.resultsVC.isShowing ? self.resultsVC.results[btn.tag] as [String : Any] : words[btn.tag] as [String : Any]
         let word = dictionary["en"] as? String
-        var url = "https://m.youdao.com/dict?q=" + word!
-        if UIDevice.current.userInterfaceIdiom == .pad {
-           url = "https://dict.youdao.com/w/eng/" + word!
+        var url = "https://dict.youdao.com/w/eng/" + word!
+        if UIDevice.current.userInterfaceIdiom == .phone {
+           url = "https://m.youdao.com/dict?q=" + word!
         }
         let urlEncoding = url.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
         let URLs = URL.init(string: urlEncoding!)!
@@ -247,22 +248,6 @@ extension WordsViewController: UISearchResultsUpdating, UISearchBarDelegate, UIS
             let zh_TWSearchComparisonPredicate = NSComparisonPredicate(leftExpression: zh_TWExpression, rightExpression: searchStringExpression, modifier: .direct, type: .contains, options: .caseInsensitive)
             searchItemsPredicate.append(zh_TWSearchComparisonPredicate)
             
-//            let numberFormatter = NumberFormatter()
-//            numberFormatter.numberStyle = .none
-//            numberFormatter.formatterBehavior = .default
-//            
-//            let targetNumber = numberFormatter.number(from: searchString)
-//            
-//            // `searchString` may fail to convert to a number.
-//            if targetNumber != nil {
-//                // Use `targetNumberExpression` in both the following predicates.
-//                let targetNumberExpression = NSExpression(forConstantValue: targetNumber!)
-//                
-//                // `yearIntroduced` field matching.
-//                let yearIntroducedExpression = NSExpression(forKeyPath: "yearIntroduced")
-//                let yearIntroducedPredicate = NSComparisonPredicate(leftExpression: yearIntroducedExpression, rightExpression: targetNumberExpression, modifier: .direct, type: .equalTo, options: .caseInsensitive)
-//            }
-            
             // Add this OR predicate to our master AND predicate.
             let orMatchPredicate = NSCompoundPredicate(orPredicateWithSubpredicates:searchItemsPredicate)
             
@@ -320,6 +305,9 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "WordsViewCell")
             cell!.selectedBackgroundView = UIView.init(frame: cell!.frame)
             cell!.selectedBackgroundView?.backgroundColor = kColorAppMain.withAlphaComponent(0.7)
+            if #available(iOS 13, *) {
+                cell?.backgroundColor = .secondarySystemGroupedBackground
+            }
         }
         
         let btn = UIButton.init(type: .detailDisclosure)

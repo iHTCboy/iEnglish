@@ -45,6 +45,9 @@ class TCSearchResultsVC: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: "TCSearchResultsVC")
         if cell == nil {
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "TCSearchResultsVC")
+            if #available(iOS 13.0, *) {
+                cell?.backgroundColor = .secondarySystemGroupedBackground
+            }
         }
         
         return cell!
