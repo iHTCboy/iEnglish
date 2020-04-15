@@ -2,8 +2,9 @@
 iEnglish is English Beginner App for iOS , iPadOS, macOS
 
 
-### 帮助与支持
-如果你有任何疑问或建议，可以点击 [帮助与反馈](https://github.com/iHTCboy/iEnglish/issues)
+### Help and Support（帮助与支持）
+- If you have any questions or suggestions, you can click [Help and Feedback](https://github.com/iHTCboy/iEnglish/issues)
+- 如果你有任何疑问或建议，可以点击 [帮助与反馈](https://github.com/iHTCboy/iEnglish/issues)
 
 ### 项目介绍
 iEnglish - 初学者必备词汇，3000入门单词和词汇分类学习
