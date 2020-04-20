@@ -11,6 +11,27 @@ iEnglish - 初学者必备词汇，3000入门单词和词汇分类学习
 
 iEnglish - Beginner Essential Vocabulary, 3000 Entry Words and Vocabulary Classification Learning
 
+
+iEnglish 是一款英语初学者提供基础英文单词学习的应用，正确的单词发音、必备的分类单词，不断努力打造更简单更好方式呈现更有趣的英语知识，让大家在零碎时间也可以快速和简单的学习get!
+
+- 3000入门单词
+- 全局单词搜索
+- 准确的英文发音
+- 常用单词分类汇总
+
+这是英语初学者必备的单词学习的好工具，强烈推荐英文初学者的工具！希望它能成为你英语学习的快速阶梯！
+
+
+#快捷键#
+> 适配于 iPad 和 macOS
+
+- **全局**
+
+- command(⌘) + 1/2/3：切换 TabBar 标签栏
+- command(⌘) + Escape：返回（如果是子页面，返回上一页面）
+
+
+
 ### 项目学习
 - 本App可以学习到 Swift 开发 iOS App的技术。
 - 本应用主要是学习到Sqlite数据库使用和最新的Apple 技术，比如 MacCatalyst 。
@@ -24,6 +45,16 @@ iEnglish - Beginner Essential Vocabulary, 3000 Entry Words and Vocabulary Classi
 
 2、编译安装
 因为苹果开发者账号需要 ￥688 年费，所以 AppStore下载收费请见谅。你可以下载本项目代码在macOS系统编译安装。
+
+
+### 应用更新日志
+
+- v7.1.0
+> 2020-04-19
+
+- 1、增加键盘快捷键功能（适用于 iPad 和 macOS）
+- 2、优化应用界面细节和用户体验
+
 
 
 ### 应用截图

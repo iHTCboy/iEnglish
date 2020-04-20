@@ -118,5 +118,110 @@ extension AppDelegate {
     @IBAction func showHelp(_ sender: Any) {
         IAppleServiceUtil.openWebView(url: kGithubURL, tintColor: kColorAppOrange, vc: (UIViewController.keyWindowHTC()?.rootViewController)!)
     }
+    
+    @objc func showTips() {
+        IAppleServiceUtil.openWebView(url: kGithubURL, tintColor: kColorAppOrange, vc: (UIViewController.keyWindowHTC()?.rootViewController)!)
+    }
+    
+    override func buildMenu(with builder: UIMenuBuilder) {
+        guard builder.system == .main else {
+            return
+        }
+        
+        builder.remove(menu: .edit)
+        builder.remove(menu: .format)
+        builder.remove(menu: .toolbar)
+        
+//        let searchKey = UIKeyCommand.init(title: "搜索", image: nil, action: #selector(AppDelegate.showTips), input: "f", modifierFlags: [.command], propertyList: nil, alternates: [], discoverabilityTitle: nil, attributes: [], state: .off)
+//
+//        let menu = UIMenu.init(title: "Search", image: nil, identifier: UIMenu.Identifier.init("MyMenu"), options: [.displayInline], children: [searchKey])
+//
+//        builder.insertChild(menu, atStartOfMenu: .file)
+    }
 }
 #endif
+
+
+// ref: https://www.avanderlee.com/swift/uikeycommand-keyboard-shortcuts/
+// MARK: - Keyboard Shortcuts
+extension UITabBarController {
+
+    /// Adds keyboard shortcuts for the tabs.
+    /// - Shift + Tab Index for the simulator
+    open override var keyCommands: [UIKeyCommand]? {
+        let tabCommand = tabBar.items?.enumerated().map { (index, item) -> UIKeyCommand in
+            let keyCommand = UIKeyCommand.init(input: "\(index + 1)", modifierFlags: .command, action: #selector(selectTab))
+            if #available(iOS 9.0, *) {
+                keyCommand.discoverabilityTitle = item.title ?? "Tab \(index + 1)"
+            }
+            return keyCommand
+        }
+
+//        #if !targetEnvironment(macCatalyst)
+//        let searchKeyCommand = UIKeyCommand.init(input: "F", modifierFlags: [.command], action: #selector(searchCommand))
+//        searchKeyCommand.discoverabilityTitle = HTCLocalized("Search")
+//        return tabCommand! + [searchKeyCommand]
+//        #else
+        return tabCommand! //+ [searchKeyCommand]
+//        #endif
+    }
+
+    @objc private func selectTab(sender: UIKeyCommand) {
+        UITabBarController.lastSender = sender
+        guard let input = sender.input, let newIndex = Int(input), newIndex >= 1 && newIndex <= (tabBar.items?.count ?? 0) else { return }
+        selectedIndex = newIndex - 1
+    }
+
+//    @objc private func searchCommand(sender: UIKeyCommand) {
+////        AppDelegate.showSearchVC()
+//    }
+
+
+    open override var canBecomeFirstResponder: Bool {
+        return true
+    }
+
+
+    /// fix bug：临时修复快捷键点击后，action循环调用问题
+    static var lastSender: UIKeyCommand?
+
+    override open func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if let sd = sender as? UIKeyCommand {
+            return UITabBarController.lastSender != sd
+        }
+        
+        return super.canPerformAction(action, withSender: sender)
+    }
+
+//    @IBAction func showSearch(_ sender: Any) {
+////        AppDelegate.showSearchVC()
+//    }
+}
+
+
+
+// MARK: - Keyboard Shortcuts
+extension UINavigationController {
+
+    /*
+     Adds keyboard shortcuts to navigate back in a navigation controller.
+     - Shift + left arrow on the simulator
+     */
+    override public var keyCommands: [UIKeyCommand]? {
+        guard viewControllers.count > 1 else { return [] }
+        let backKeyCommand = UIKeyCommand.init(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(backCommand))
+        if #available(iOS 9.0, *) {
+            backKeyCommand.discoverabilityTitle = HTCLocalized("Back")
+        }
+        
+        return [backKeyCommand]
+    }
+
+    @objc private func backCommand() {
+        popViewController(animated: true)
+    }
+    
+    open override var canBecomeFirstResponder: Bool {
+        return true
+    }
+}

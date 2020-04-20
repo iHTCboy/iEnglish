@@ -100,13 +100,17 @@ class WordsViewController: UIViewController {
         searchVC.searchResultsUpdater = self as UISearchResultsUpdating
         searchVC.searchBar.delegate = self as UISearchBarDelegate
         searchVC.delegate = self as UISearchControllerDelegate
+        #if !targetEnvironment(macCatalyst)
         searchVC.dimsBackgroundDuringPresentation = false //开始搜索时背景不显示
+        #endif
         searchVC.searchBar.placeholder = "Search word"
         //searchBar样式调整
         if #available(iOS 11.0, *) {
             searchVC.searchBar.tintColor = UIColor.white
             searchVC.searchBar.barTintColor = UIColor.white
             if #available(iOS 13, *) {
+                searchVC.searchBar.searchTextField.textColor = .white
+                searchVC.searchBar.searchTextField.tintColor = .white
                 UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             } else {
                 UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: kColorAppMain]
@@ -294,11 +298,18 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         return tableView == self.tableView ? self.words.count : self.resultsVC.results.count
     }
     
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    func sectionIndexTitles(for tbView: UITableView) -> [String]? {
+        if tbView != tableView {
+            return []
+        }
         return sortWordDic.keys.sorted(by: <)
     }
     
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+    func tableView(_ tbView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        
+        if tbView != tableView {
+            return 0
+        }
         
         //点击索引，列表跳转到对应索引的行
         let indexNumber = sortWordDic[title];

@@ -186,7 +186,7 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
                 }
             }
             if row == 1 {
-                gotoAppstore(isAssessment: true)
+                gotoAppstore(isAssessment: false)
             }
             if row == 2 {
                 

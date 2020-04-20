@@ -44,7 +44,7 @@ let kScreenH = UIScreen.main.bounds.height
 let kMarginLine = "———————————————————"
 
 // Color
-let kColorAppMain = UIColor(red:0.844,  green:0.326,  blue:0.278, alpha:1)
+let kColorAppMain = UIColor(red:0.820, green:0.326, blue:0.292, alpha:1.000)
 let KColorAPPRed = UIColor(red:0.714,  green:0.182,  blue:0.165, alpha:1)
 let kColorAppBlue = UIColor(red:0.274,  green:0.745,  blue:0.987, alpha:1)
 let kColorAppOrange =  UIColor(red:1,  green:0.503,  blue:0, alpha:1)
