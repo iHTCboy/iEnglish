@@ -356,7 +356,11 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         
         let dictionary = tableView == self.tableView ? words[indexPath.row] as [String : Any] : self.resultsVC.results[indexPath.row] as [String : Any]
         
-        let name = dictionary["en"] as? String
+        var name = dictionary["en"] as? String
+        
+        if let name_str = name, name_str.contains("("){
+            name = name_str.replacingOccurrences(of: "\\s\\(\\w+\\)", with: "", options: .regularExpression)
+        }
         
         if let bundlePath = Bundle.main.path(forResource: "iEnglish", ofType: "bundle"),
             let bundle = Bundle(path: bundlePath),

@@ -207,8 +207,8 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
             }
             if row == 2 {
                 let message = "欢迎来信，写下你的问题吧" + "\n\n\n\n" + kMarginLine + "\n 当前\(kAppName)版本：" + KAppVersion + "， 系统版本：" + String(Version.SYS_VERSION_FLOAT) + "， 设备信息：" + UIDevice.init().modelName
-                
-                ITCommonAPI.sharedInstance.sendEmail(recipients: [kEmail], messae: message, vc: self)
+                let subject = "\(kAppName) Feedback"
+                ITCommonAPI.sharedInstance.sendEmail(recipients: [kEmail], subject: subject, messae: message, vc: self)
             }
             if row == 3 {
                 openWebview(url: kGithubURL)
