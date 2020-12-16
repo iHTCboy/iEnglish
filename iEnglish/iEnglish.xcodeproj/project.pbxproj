@@ -25,11 +25,11 @@
 		6D1ABA251EE84D430026054A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA241EE84D430026054A /* Security.framework */; };
 		6D1ABA271EE84D4A0026054A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA261EE84D4A0026054A /* CoreLocation.framework */; };
 		6D1ABA291EE84DBA0026054A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA281EE84DBA0026054A /* SystemConfiguration.framework */; };
-		6D2C0FB62157F31700C37783 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D2C0FB42157F31700C37783 /* README.md */; };
-		6D2C0FB72157F31700C37783 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6D2C0FB52157F31700C37783 /* LICENSE */; };
 		6D4429421EE5A3760030534D /* TCTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4429411EE5A3760030534D /* TCTabbarController.swift */; };
 		6D4429441EE5A4AD0030534D /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4429431EE5A4AD0030534D /* SettingController.swift */; };
 		6D4429461EE5ACE00030534D /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D4429451EE5ACE00030534D /* SafariServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6D8F017C258A468B00332C66 /* iEnglish.db3 in Resources */ = {isa = PBXBuildFile; fileRef = 6D8F017B258A468B00332C66 /* iEnglish.db3 */; };
+		6D8F017D258A468B00332C66 /* iEnglish.db3 in Resources */ = {isa = PBXBuildFile; fileRef = 6D8F017B258A468B00332C66 /* iEnglish.db3 */; };
 		6D9E72921EE45ABA00AB993A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9E72911EE45ABA00AB993A /* AudioToolbox.framework */; };
 		6DA062851EE43D6F00B3F5D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062841EE43D6F00B3F5D9 /* Assets.xcassets */; };
 		6DA062881EE43D6F00B3F5D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062861EE43D6F00B3F5D9 /* LaunchScreen.storyboard */; };
@@ -43,7 +43,6 @@
 		6DA062C41EE447DE00B3F5D9 /* TCNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA062C31EE447DE00B3F5D9 /* TCNavigationController.swift */; };
 		6DA062C91EE44E8C00B3F5D9 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA062C71EE44E8C00B3F5D9 /* SQLiteDB.swift */; };
 		6DA062CA1EE44E8C00B3F5D9 /* SQLTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA062C81EE44E8C00B3F5D9 /* SQLTable.swift */; };
-		6DA062CC1EE450F400B3F5D9 /* iEnglish.db3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062C51EE44D9900B3F5D9 /* iEnglish.db3 */; };
 		6DA062CE1EE4553700B3F5D9 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA062CD1EE4553700B3F5D9 /* CategoryViewController.swift */; };
 		6DBA5ACD244310B700824FD5 /* IHTCAppearanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBA5ACC244310B700824FD5 /* IHTCAppearanceVC.swift */; };
 		6DBA5ACF2443110600824FD5 /* IHTCUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBA5ACE2443110600824FD5 /* IHTCUserDefaults.swift */; };
@@ -85,13 +84,10 @@
 		6DBA5B072443160000824FD5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA121EE84D030026054A /* CFNetwork.framework */; };
 		6DBA5B082443160000824FD5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9E72911EE45ABA00AB993A /* AudioToolbox.framework */; };
 		6DBA5B092443160000824FD5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA062AF1EE444EB00B3F5D9 /* libsqlite3.0.tbd */; };
-		6DBA5B0C2443160000824FD5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D2C0FB42157F31700C37783 /* README.md */; };
 		6DBA5B0D2443160000824FD5 /* TableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D06A39C227C79E900606D2A /* TableHeaderView.xib */; };
 		6DBA5B0E2443160000824FD5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6DBA5ADF244312D900824FD5 /* Localizable.strings */; };
-		6DBA5B0F2443160000824FD5 /* iEnglish.db3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062C51EE44D9900B3F5D9 /* iEnglish.db3 */; };
 		6DBA5B102443160000824FD5 /* iHTCboyApp.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D06A396227C78EC00606D2A /* iHTCboyApp.json */; };
 		6DBA5B112443160000824FD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062861EE43D6F00B3F5D9 /* LaunchScreen.storyboard */; };
-		6DBA5B122443160000824FD5 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6D2C0FB52157F31700C37783 /* LICENSE */; };
 		6DBA5B132443160000824FD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062841EE43D6F00B3F5D9 /* Assets.xcassets */; };
 		6DBA5B142443160000824FD5 /* iEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DA062AC1EE443B200B3F5D9 /* iEnglish.bundle */; };
 		6DBA5B152443160000824FD5 /* ITAboutAppVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DCB7F011EE7013A0074FD00 /* ITAboutAppVC.xib */; };
@@ -148,6 +144,7 @@
 		6D4429411EE5A3760030534D /* TCTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCTabbarController.swift; sourceTree = "<group>"; };
 		6D4429431EE5A4AD0030534D /* SettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		6D4429451EE5ACE00030534D /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		6D8F017B258A468B00332C66 /* iEnglish.db3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iEnglish.db3; sourceTree = "<group>"; };
 		6D9E72911EE45ABA00AB993A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6DA0627A1EE43D6F00B3F5D9 /* iEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DA062841EE43D6F00B3F5D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -166,7 +163,6 @@
 		6DA062BF1EE447B800B3F5D9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DA062C01EE447B800B3F5D9 /* WordsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordsViewController.swift; sourceTree = "<group>"; };
 		6DA062C31EE447DE00B3F5D9 /* TCNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCNavigationController.swift; sourceTree = "<group>"; };
-		6DA062C51EE44D9900B3F5D9 /* iEnglish.db3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = iEnglish.db3; sourceTree = "<group>"; };
 		6DA062C71EE44E8C00B3F5D9 /* SQLiteDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDB.swift; sourceTree = "<group>"; };
 		6DA062C81EE44E8C00B3F5D9 /* SQLTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLTable.swift; sourceTree = "<group>"; };
 		6DA062CD1EE4553700B3F5D9 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -339,8 +335,8 @@
 		6DA062AB1EE4421100B3F5D9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6D8F017B258A468B00332C66 /* iEnglish.db3 */,
 				6D06A396227C78EC00606D2A /* iHTCboyApp.json */,
-				6DA062C51EE44D9900B3F5D9 /* iEnglish.db3 */,
 				6DA062AC1EE443B200B3F5D9 /* iEnglish.bundle */,
 			);
 			path = Resources;
@@ -568,15 +564,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D2C0FB62157F31700C37783 /* README.md in Resources */,
 				6D06A39E227C79E900606D2A /* TableHeaderView.xib in Resources */,
 				6DBA5ADD244312D900824FD5 /* Localizable.strings in Resources */,
-				6DA062CC1EE450F400B3F5D9 /* iEnglish.db3 in Resources */,
 				6D06A397227C78EC00606D2A /* iHTCboyApp.json in Resources */,
 				6DA062881EE43D6F00B3F5D9 /* LaunchScreen.storyboard in Resources */,
-				6D2C0FB72157F31700C37783 /* LICENSE in Resources */,
 				6DA062851EE43D6F00B3F5D9 /* Assets.xcassets in Resources */,
 				6DA062AD1EE443B200B3F5D9 /* iEnglish.bundle in Resources */,
+				6D8F017C258A468B00332C66 /* iEnglish.db3 in Resources */,
 				6DCB7F031EE7013A0074FD00 /* ITAboutAppVC.xib in Resources */,
 				6DBA5AD4244311B100824FD5 /* InfoPlist.strings in Resources */,
 			);
@@ -600,15 +594,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DBA5B0C2443160000824FD5 /* README.md in Resources */,
 				6DBA5B0D2443160000824FD5 /* TableHeaderView.xib in Resources */,
 				6DBA5B0E2443160000824FD5 /* Localizable.strings in Resources */,
-				6DBA5B0F2443160000824FD5 /* iEnglish.db3 in Resources */,
 				6DBA5B102443160000824FD5 /* iHTCboyApp.json in Resources */,
 				6DBA5B112443160000824FD5 /* LaunchScreen.storyboard in Resources */,
-				6DBA5B122443160000824FD5 /* LICENSE in Resources */,
 				6DBA5B132443160000824FD5 /* Assets.xcassets in Resources */,
 				6DBA5B142443160000824FD5 /* iEnglish.bundle in Resources */,
+				6D8F017D258A468B00332C66 /* iEnglish.db3 in Resources */,
 				6DBA5B152443160000824FD5 /* ITAboutAppVC.xib in Resources */,
 				6DBA5B162443160000824FD5 /* InfoPlist.strings in Resources */,
 			);
@@ -925,13 +917,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iEnglish/iEnglish.entitlements;
-				CURRENT_PROJECT_VERSION = 2020.12.13;
+				CURRENT_PROJECT_VERSION = 2020.12.16;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = iEnglish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 7.6.0;
+				MARKETING_VERSION = 7.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cc.ihtc.iEnglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -948,13 +940,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iEnglish/iEnglish.entitlements;
-				CURRENT_PROJECT_VERSION = 2020.12.13;
+				CURRENT_PROJECT_VERSION = 2020.12.16;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = iEnglish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 7.6.0;
+				MARKETING_VERSION = 7.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cc.ihtc.iEnglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -1032,14 +1024,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iEnglish/iEnglish.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CURRENT_PROJECT_VERSION = 2020.12.14;
+				CURRENT_PROJECT_VERSION = 2020.12.16;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = "$(SRCROOT)/iEnglish/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 7.6.0;
+				MARKETING_VERSION = 7.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cc.ihtc.iEnglish;
 				PRODUCT_NAME = iEnglish;
 				SUPPORTS_MACCATALYST = YES;
@@ -1057,14 +1049,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iEnglish/iEnglish.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CURRENT_PROJECT_VERSION = 2020.12.14;
+				CURRENT_PROJECT_VERSION = 2020.12.16;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = "$(SRCROOT)/iEnglish/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 7.6.0;
+				MARKETING_VERSION = 7.7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cc.ihtc.iEnglish;
 				PRODUCT_NAME = iEnglish;
 				SUPPORTS_MACCATALYST = YES;
