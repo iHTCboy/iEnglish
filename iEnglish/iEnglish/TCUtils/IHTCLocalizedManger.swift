@@ -11,8 +11,8 @@ import UIKit
 
 // 多语言
 func HTCLocalized(_ key: String) -> String {
-//    return NSLocalizedString(key, tableName: nil, comment: "")
-    return IHTCLocalizedManger.shared.localizedString(key)
+    return NSLocalizedString(key, tableName: nil, comment: "")
+//    return IHTCLocalizedManger.shared.localizedString(key)
 }
 
 class IHTCLocalizedManger: NSObject {

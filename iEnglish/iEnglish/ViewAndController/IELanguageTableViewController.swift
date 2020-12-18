@@ -15,7 +15,7 @@ class IELanguageTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Language"
+        title = HTCLocalized("Language");
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .never
         }
