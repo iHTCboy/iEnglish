@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import AudioToolbox
+import AVFoundation
 import SafariServices
 
 class WordsViewController: UIViewController {
@@ -51,14 +52,27 @@ class WordsViewController: UIViewController {
             // Fallback on earlier versions
             self.tableView.tableHeaderView = self.searchVC.searchBar
         }
+        
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.player?.stop()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.player?.stop()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    var soundId: SystemSoundID = 0
+//    var soundId: SystemSoundID = 0
     // MARK:- 懒加载
     
     //获取数据库实例
@@ -139,6 +153,7 @@ class WordsViewController: UIViewController {
     }()
     
 //    let Words = db.query(sql: "select * from Words")
+    var player: AVAudioPlayer?
 }
 
 
@@ -148,15 +163,38 @@ extension WordsViewController
         
         let fileUrl = URL.init(fileURLWithPath: audioPath)
         
-        AudioServicesCreateSystemSoundID(fileUrl as CFURL, &soundId)
+        playMusic(url: fileUrl)
         
-        AudioServicesAddSystemSoundCompletion(soundId, nil, nil, {
-            (soundID:SystemSoundID, _:UnsafeMutableRawPointer?) in
-            //print(" play audio completioned")
-        }, nil)
-        
-        AudioServicesPlaySystemSound(soundId)
-        //        AudioServicesPlayAlertSound(soundId) //paly and Shake
+//        AudioServicesCreateSystemSoundID(fileUrl as CFURL, &soundId)
+//
+//        AudioServicesAddSystemSoundCompletion(soundId, nil, nil, {
+//            (soundID:SystemSoundID, _:UnsafeMutableRawPointer?) in
+//            //print(" play audio completioned")
+//        }, nil)
+//
+//        AudioServicesPlaySystemSound(soundId)
+//        //        AudioServicesPlayAlertSound(soundId) //paly and Shake
+    }
+    
+    func playMusic(url: URL) {
+        //初始化播放器对象
+        let audioPlay = try! AVAudioPlayer.init(contentsOf: url)
+        player = audioPlay
+        //设置声音的大小
+        audioPlay.volume = TCUserDefaults.shared.getIEVolume() //范围为（0到1）；
+        //设置循环次数，如果为负数，就是无限循环
+        audioPlay.numberOfLoops = TCUserDefaults.shared.getIELoops()
+        //允许用户在不改变音调的情况下调整播放率，范围从0.5（半速）到2.0（2倍速）
+        let speed = TCUserDefaults.shared.getIESpeed()
+        audioPlay.rate = TCUserDefaults.shared.getIESpeed()
+        if speed != 1.0 {
+            audioPlay.enableRate = true
+        }
+        //设置播放进度
+        audioPlay.currentTime = 0
+        //准备播放,调用此方法将预加载缓冲区并获取音频硬件，这样做可以将调用play方法和听到输出声音之间的延时降低到最小
+        audioPlay.prepareToPlay()
+        audioPlay.play()
     }
     
     func sortWords() {
@@ -366,7 +404,7 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
             let bundle = Bundle(path: bundlePath),
             let path = bundle.path(forResource: name?.lowercased(), ofType: "aiff") {
             //print(path)
-            AudioServicesRemoveSystemSoundCompletion(soundId)
+//            AudioServicesRemoveSystemSoundCompletion(soundId)
             playSoundEffect(audioPath: path)
         } else {
             print("not found")

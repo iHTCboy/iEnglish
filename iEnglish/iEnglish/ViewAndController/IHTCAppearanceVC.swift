@@ -22,9 +22,6 @@ class IHTCAppearanceVC: UITableViewController {
     
     func setupUI() {
         title = HTCLocalized("Appearance")
-        if #available(iOS 13.0, *) {
-            tableView.backgroundColor = .secondarySystemBackground
-        }
         if #available(iOS 11.0, *) {
             self.navigationItem.largeTitleDisplayMode = .never
         }
