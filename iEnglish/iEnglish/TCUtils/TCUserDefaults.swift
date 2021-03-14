@@ -41,6 +41,30 @@ extension TCUserDefaults
     func setIElanguage(value: String) {
         setTCValue(value: value, forKey: "IELanguageKey")
     }
+    
+    func getIEShowPlural() -> Bool {
+        if let bool = getTCValue(key: "IEShowPlural") as? Bool {
+            return bool
+        }
+        return false
+    }
+    
+    func setIEShowPlural(value: Bool) {
+        setTCValue(value: value, forKey: "IEShowPlural")
+    }
+    
+    
+    func getIEShowChinese() -> Bool {
+        if let bool = getTCValue(key: "IEShowChinese") as? Bool {
+            return bool
+        }
+        return true
+    }
+    
+    func setIEShowChinese(value: Bool) {
+        setTCValue(value: value, forKey: "IEShowChinese")
+    }
+    
 }
 
 // MARK: 声音设置
@@ -80,13 +104,11 @@ extension TCUserDefaults
 
     func getIELoops() -> Int {
         if let int = getTCValue(key: "IELoops") as? Int {
-            if int == 0 {
-                return -1 //无限次
-            }
             return int
         }
-        return 1
+        return 0
     }
+    
     func setIELoops(value: Int) {
         setTCValue(value: value, forKey: "IELoops")
     }

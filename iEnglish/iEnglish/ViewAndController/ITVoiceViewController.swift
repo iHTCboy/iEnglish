@@ -46,7 +46,9 @@ class ITVoiceViewController: UITableViewController {
         speedSlider.value = TCUserDefaults.shared.getIESpeed()
         speedLabel.text =  String(TCUserDefaults.shared.getIESpeed())
         loopsSlider.value = Float(TCUserDefaults.shared.getIELoops())
-        loopsLabel.text =  String(TCUserDefaults.shared.getIELoops())
+        let loops = Int(TCUserDefaults.shared.getIELoops())
+        loopsSlider.value = Float(loops)
+        loopsLabel.text = (loops == -1) ? "无限" : String(loops)
     }
     
     
@@ -83,11 +85,8 @@ class ITVoiceViewController: UITableViewController {
     }
     
     @IBAction func clickedLoopsSlider(_ sender: UISlider) {
-        var loops = Int(sender.value)
-        if loops == 0 {
-            loops = -1
-        }
-        loopsLabel.text = String(loops)
+        let loops = Int(sender.value)
+        loopsLabel.text = (loops == -1) ? "无限" : String(loops)
         
         TCUserDefaults.shared.setIELoops(value: loops)
         

@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         startBaiduMobStat()
-        setupVoiceSystem()
         
         return true
     }
@@ -109,18 +108,7 @@ extension AppDelegate {
         tabbar.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         #endif
     }
-    
-    func setupVoiceSystem() {
-        if TCUserDefaults.shared.getIEAllowVoice() {
-            let audioSession = AVAudioSession.sharedInstance()
-            try? audioSession.setCategory(AVAudioSession.Category.playback)
-            try? audioSession.setActive(true, options: AVAudioSession.SetActiveOptions(rawValue: 0))
-        } else {
-            let audioSession = AVAudioSession.sharedInstance()
-            try? audioSession.setCategory(AVAudioSession.Category.soloAmbient)
-            try? audioSession.setActive(true, options: AVAudioSession.SetActiveOptions(rawValue: 0))
-        }
-    }
+
 }
 
 

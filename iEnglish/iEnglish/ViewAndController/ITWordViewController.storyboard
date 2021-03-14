@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iQZ-UH-o5n">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Word View Controller-->
+        <scene sceneID="5HR-Iq-ewb">
+            <objects>
+                <tableViewController id="iQZ-UH-o5n" customClass="ITWordViewController" customModule="iEnglish" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ft3-4l-gFR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="AwX-iC-KsJ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Edq-mD-vXM">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Edq-mD-vXM" id="WJq-LW-lbY">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="显示单词的中文解析" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwA-el-79r">
+                                                    <rect key="frame" x="32" y="19" width="166" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="95V-48-TeE">
+                                                    <rect key="frame" x="326" y="14.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="clickedChineseSwitch:" destination="iQZ-UH-o5n" eventType="valueChanged" id="oyu-yC-mzd"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bwA-el-79r" secondAttribute="bottom" constant="8" id="BVh-2x-e7e"/>
+                                                <constraint firstItem="bwA-el-79r" firstAttribute="leading" secondItem="WJq-LW-lbY" secondAttribute="leadingMargin" constant="12" id="KfG-Oz-QuL"/>
+                                                <constraint firstItem="bwA-el-79r" firstAttribute="top" secondItem="WJq-LW-lbY" secondAttribute="topMargin" constant="8" id="LE5-Fp-C88"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="95V-48-TeE" secondAttribute="trailing" constant="19" id="SlY-sj-qE5"/>
+                                                <constraint firstItem="95V-48-TeE" firstAttribute="centerY" secondItem="WJq-LW-lbY" secondAttribute="centerY" id="pC3-m3-IPs"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Vt0-tX-76j">
+                                        <rect key="frame" x="0.0" y="88" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vt0-tX-76j" id="l1O-h4-PjR">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="显示单词的复数形式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y09-K1-ef0">
+                                                    <rect key="frame" x="32" y="19" width="166" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fp5-q8-6cO">
+                                                    <rect key="frame" x="326" y="14.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="clickedPluralSwitch:" destination="iQZ-UH-o5n" eventType="valueChanged" id="GNG-7t-HOa"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="y09-K1-ef0" firstAttribute="top" secondItem="l1O-h4-PjR" secondAttribute="topMargin" constant="8" id="AmG-Vu-bdc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="fp5-q8-6cO" secondAttribute="trailing" constant="19" id="BM1-0n-YBf"/>
+                                                <constraint firstItem="fp5-q8-6cO" firstAttribute="centerY" secondItem="l1O-h4-PjR" secondAttribute="centerY" id="Xe5-ba-uJb"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="y09-K1-ef0" secondAttribute="bottom" constant="8" id="d52-Yl-nDo"/>
+                                                <constraint firstItem="y09-K1-ef0" firstAttribute="leading" secondItem="l1O-h4-PjR" secondAttribute="leadingMargin" constant="12" id="okx-1r-Ttg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="iQZ-UH-o5n" id="jWh-TX-WCx"/>
+                            <outlet property="delegate" destination="iQZ-UH-o5n" id="FGO-b0-xNX"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="allowChineseSwitch" destination="95V-48-TeE" id="Ceh-l6-FFf"/>
+                        <outlet property="allowPluralSwitch" destination="fp5-q8-6cO" id="0M6-ZL-dQb"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wyr-lj-1WD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-84.057971014492765" y="36.830357142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

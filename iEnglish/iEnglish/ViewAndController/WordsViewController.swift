@@ -57,7 +57,7 @@ class WordsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        refreshData()
         self.player?.stop()
     }
     
@@ -154,11 +154,21 @@ class WordsViewController: UIViewController {
     
 //    let Words = db.query(sql: "select * from Words")
     var player: AVAudioPlayer?
+    var languageLocalCode: String = TCUserDefaults.shared.getIELanguage()
+    var isShowPlural: Bool = false
+    var isShowChinese: Bool = false
 }
 
 
 extension WordsViewController
 {
+    func refreshData() {
+        languageLocalCode = TCUserDefaults.shared.getIELanguage()
+        isShowPlural = TCUserDefaults.shared.getIEShowPlural()
+        isShowChinese = TCUserDefaults.shared.getIEShowChinese()
+        self.tableView.reloadData()
+    }
+    
     func playSoundEffect(audioPath: String) {
         
         let fileUrl = URL.init(fileURLWithPath: audioPath)
@@ -177,12 +187,17 @@ extension WordsViewController
     }
     
     func playMusic(url: URL) {
+        // only one
+        DispatchQueue.once {
+            setupVoiceSystem()
+        }
+        
         //初始化播放器对象
         let audioPlay = try! AVAudioPlayer.init(contentsOf: url)
         player = audioPlay
         //设置声音的大小
         audioPlay.volume = TCUserDefaults.shared.getIEVolume() //范围为（0到1）；
-        //设置循环次数，如果为负数，就是无限循环
+        //设置循环次数，如果为负数，就是无限循环，0表示不循环只播放一次
         audioPlay.numberOfLoops = TCUserDefaults.shared.getIELoops()
         //允许用户在不改变音调的情况下调整播放率，范围从0.5（半速）到2.0（2倍速）
         let speed = TCUserDefaults.shared.getIESpeed()
@@ -195,6 +210,64 @@ extension WordsViewController
         //准备播放,调用此方法将预加载缓冲区并获取音频硬件，这样做可以将调用play方法和听到输出声音之间的延时降低到最小
         audioPlay.prepareToPlay()
         audioPlay.play()
+    }
+    
+    //设置声音模式（是否设备静音也播放）
+    func setupVoiceSystem() {
+        if TCUserDefaults.shared.getIEAllowVoice() {
+            let audioSession = AVAudioSession.sharedInstance()
+            try? audioSession.setCategory(AVAudioSession.Category.playback)
+            try? audioSession.setActive(true, options: AVAudioSession.SetActiveOptions(rawValue: 0))
+        } else {
+            let audioSession = AVAudioSession.sharedInstance()
+            try? audioSession.setCategory(AVAudioSession.Category.soloAmbient)
+            try? audioSession.setActive(true, options: AVAudioSession.SetActiveOptions(rawValue: 0))
+        }
+    }
+    
+    
+    func getAttributedText(word: String, plural: String) -> NSAttributedString {
+        var secondaryLabel = UIColor.darkGray
+        if #available(iOS 13.0, *) {
+            secondaryLabel = UIColor.secondaryLabel
+        }
+        let text = "\(word) [\(plural)]"
+        let newStr = NSMutableAttributedString(string: text)
+        if let range = text.range(of: "[", options: .backwards ) {
+            let nsRange = NSRange(range, in: text)
+            newStr.addAttribute(NSAttributedString.Key.foregroundColor, value: secondaryLabel, range: nsRange)
+        }
+        if let range = text.range(of: "]", options: .backwards ) {
+            let nsRange = NSRange(range, in: text)
+            newStr.addAttribute(NSAttributedString.Key.foregroundColor, value: secondaryLabel, range: nsRange)
+        }
+        if let range = text.range(of: plural, options: .backwards ) {
+            let nsRange = NSRange(range, in: text)
+            newStr.addAttribute(NSAttributedString.Key.foregroundColor, value: kColorAppMain, range: nsRange)
+        }
+        
+        let maxString = get_max_word(word: word, plural: plural)
+        if let range = text.range(of: maxString, options: .backwards ) {
+            let nsRange = NSRange(range, in: text)
+            newStr.addAttribute(NSAttributedString.Key.foregroundColor, value: secondaryLabel, range: nsRange)
+        }
+        
+        return newStr
+    }
+    
+    func get_max_word(word: String, plural: String) -> String {
+        let minCount = min(word.count, plural.count)
+        var list: [String] = []
+        for i in 0..<minCount {
+            let a = word[i]
+            let b = plural[i]
+            if a == b {
+                list.append(String(a))
+            } else {
+                break
+            }
+        }
+        return list.joined(separator:"")
     }
     
     func sortWords() {
@@ -260,8 +333,31 @@ extension WordsViewController
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
 }
 
+extension DispatchQueue {
+    private static var _onceTracker = [String]()
+    public class func once(file: String = #file, function: String = #function, line: Int = #line, block:()->Void) {
+        let token = file + ":" + function + ":" + String(line)
+        once(token: token, block: block)
+    }
+    /**
+     Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
+     only execute the code once even in the presence of multithreaded calls.
+     - parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
+     - parameter block: Block to execute once
+     */
+    public class func once(token: String, block:()->Void) {
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        if _onceTracker.contains(token) {
+            return
+        }
+        _onceTracker.append(token)
+        block()
+    }
+}
 
 extension WordsViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate
 {
@@ -379,12 +475,23 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
         
         let dictionary = tableView == self.tableView ? words[indexPath.row] as [String : Any] : self.resultsVC.results[indexPath.row] as [String : Any]
 
-        cell?.textLabel?.text = dictionary["en"] as? String
-        let detial = (dictionary[TCUserDefaults.shared.getIELanguage()] as? String)!
-        let detialString = NSMutableAttributedString.init(string: detial)
-        let part = NSMutableAttributedString(string: " . ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.clear])
-        detialString.append(part)
-        cell?.detailTextLabel?.attributedText = detialString
+        let word  = dictionary["en"] as! String
+        let plural = dictionary["en_plural"] as! String
+        if word == plural || plural.isEmpty || !isShowPlural {
+            cell?.textLabel?.text = word
+        } else {
+            cell?.textLabel?.attributedText = getAttributedText(word: word, plural: plural)
+        }
+        
+        if isShowChinese {
+            let detial = (dictionary[languageLocalCode] as? String)!
+            let detialString = NSMutableAttributedString.init(string: detial)
+            let part = NSMutableAttributedString(string: " . ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.clear])
+            detialString.append(part)
+            cell?.detailTextLabel?.attributedText = detialString
+        } else {
+            cell?.detailTextLabel?.text = ""
+        }
         
         return cell!
     }
