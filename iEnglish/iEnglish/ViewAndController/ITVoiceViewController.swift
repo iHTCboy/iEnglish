@@ -62,7 +62,7 @@ class ITVoiceViewController: UITableViewController {
             try? audioSession.setActive(true, options: AVAudioSession.SetActiveOptions(rawValue: 0))
         } else {
             let audioSession = AVAudioSession.sharedInstance()
-            try? audioSession.setCategory(AVAudioSession.Category.soloAmbient)
+            try? audioSession.setCategory(AVAudioSession.Category.ambient)
             try? audioSession.setActive(true, options: AVAudioSession.SetActiveOptions(rawValue: 0))
         }
         

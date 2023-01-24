@@ -1,5 +1,5 @@
 PODS:
-  - BaiduMobStatCodeless (5.2.2)
+  - BaiduMobStatCodeless (5.2.7)
 
 DEPENDENCIES:
   - BaiduMobStatCodeless
@@ -9,8 +9,8 @@ SPEC REPOS:
     - BaiduMobStatCodeless
 
 SPEC CHECKSUMS:
-  BaiduMobStatCodeless: bfb398c6c2054b07f97bed51ddf0694311606324
+  BaiduMobStatCodeless: 09c3738fd435a6c13c248f39aa0f15d3f5ee7daa
 
 PODFILE CHECKSUM: 2f6ae4e66b9191a92744ff3bd96ce7dd2f1cdf8f
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.11.3

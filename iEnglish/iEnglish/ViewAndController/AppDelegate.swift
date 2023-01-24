@@ -96,7 +96,7 @@ extension AppDelegate {
             navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.backgroundColor = kColorAppMain
-            appearance.standardAppearance = navBarAppearance;
+            appearance.standardAppearance = navBarAppearance
             appearance.scrollEdgeAppearance = navBarAppearance
         }
 
