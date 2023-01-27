@@ -93,9 +93,8 @@ iEnglish 是一款英语初学者提供基础英文单词学习的应用，正�
 
 
 ### 应用截图
-![](screenshot/01.png)
-![](screenshot/02.png)
-![](screenshot/03.png)
-![](screenshot/04.png)
-![](screenshot/05.png)
-![](screenshot/06.png)
+
+| ![](screenshot/01.png) | ![](screenshot/02.png) |
+| ----- | ----- |
+| ![](screenshot/03.png) | ![](screenshot/04.png) |
+| ![](screenshot/05.png) | ![](screenshot/06.png) |
