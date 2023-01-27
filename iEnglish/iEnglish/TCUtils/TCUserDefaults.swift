@@ -67,6 +67,21 @@ extension TCUserDefaults
     
 }
 
+// MARK: 单词列表
+extension TCUserDefaults
+{
+    func getIEPlaylist() -> [String: [Int]] {
+        if let list = getTCValue(key: "IEPlaylist") as? [String: [Int]] {
+            return list
+        }
+        return  [:]
+    }
+    
+    func setIEPlaylist(value: [String: [Int]]) {
+        setTCValue(value: value, forKey: "IEPlaylist")
+    }
+}
+
 // MARK: 声音设置
 extension TCUserDefaults
 {

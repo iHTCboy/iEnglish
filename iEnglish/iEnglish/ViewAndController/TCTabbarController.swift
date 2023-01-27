@@ -21,10 +21,16 @@ class TCTabbarController: UITabBarController {
         let category = CategoryViewController()
         category.tabBarItem = UITabBarItem.init(title: "Category", image: #imageLiteral(resourceName: "tabbar_categate"), tag: 1)
         
-        let setting = SettingController()
-        setting.tabBarItem = UITabBarItem.init(title: "Setting", image: #imageLiteral(resourceName: "tabbar_setting"), tag: 2)
+        let playlist = PlaylistViewController()
+        playlist.tabBarItem = UITabBarItem.init(title: "Playlist", image: #imageLiteral(resourceName: "tabbar_playlist"), tag: 2)
         
-        viewControllers = [TCNavigationController(rootViewController: words), TCNavigationController(rootViewController: category), TCNavigationController(rootViewController: setting)]
+        let setting = SettingController()
+        setting.tabBarItem = UITabBarItem.init(title: "Setting", image: #imageLiteral(resourceName: "tabbar_setting"), tag: 3)
+        
+        viewControllers = [TCNavigationController(rootViewController: words),
+                           TCNavigationController(rootViewController: category),
+                           TCNavigationController(rootViewController: playlist),
+                           TCNavigationController(rootViewController: setting)]
         tabBar.tintColor = kColorAppMain
     }
     

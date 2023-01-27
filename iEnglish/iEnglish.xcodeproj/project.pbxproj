@@ -15,6 +15,8 @@
 		6D06A3A1227C7A5000606D2A /* IAppleServiceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06A3A0227C7A5000606D2A /* IAppleServiceUtil.swift */; };
 		6D0B412029828A27006F8C18 /* TCVoiceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0B411F29828A27006F8C18 /* TCVoiceUtils.swift */; };
 		6D0B412129828A2C006F8C18 /* TCVoiceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0B411F29828A27006F8C18 /* TCVoiceUtils.swift */; };
+		6D0B412329837901006F8C18 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0B412229837901006F8C18 /* PlaylistViewController.swift */; };
+		6D0B412429837901006F8C18 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0B412229837901006F8C18 /* PlaylistViewController.swift */; };
 		6D1ABA131EE84D030026054A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA121EE84D030026054A /* CFNetwork.framework */; };
 		6D1ABA151EE84D0A0026054A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA141EE84D0A0026054A /* MessageUI.framework */; };
 		6D1ABA191EE84D1E0026054A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D1ABA181EE84D1E0026054A /* Foundation.framework */; };
@@ -140,6 +142,7 @@
 		6D06A39D227C79E900606D2A /* TableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		6D06A3A0227C7A5000606D2A /* IAppleServiceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAppleServiceUtil.swift; sourceTree = "<group>"; };
 		6D0B411F29828A27006F8C18 /* TCVoiceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCVoiceUtils.swift; sourceTree = "<group>"; };
+		6D0B412229837901006F8C18 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		6D1ABA121EE84D030026054A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		6D1ABA141EE84D0A0026054A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6D1ABA181EE84D1E0026054A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -416,6 +419,7 @@
 				6DA062BF1EE447B800B3F5D9 /* AppDelegate.swift */,
 				6DA062C01EE447B800B3F5D9 /* WordsViewController.swift */,
 				6DA062CD1EE4553700B3F5D9 /* CategoryViewController.swift */,
+				6D0B412229837901006F8C18 /* PlaylistViewController.swift */,
 				6D4429431EE5A4AD0030534D /* SettingController.swift */,
 				6DBAE27F1EED5D91003ABE7E /* IELanguageTableViewController.swift */,
 				6D06A394227C78E300606D2A /* ITAdvancelDetailViewController.swift */,
@@ -731,6 +735,7 @@
 				6DBA5ACD244310B700824FD5 /* IHTCAppearanceVC.swift in Sources */,
 				6D06A3A1227C7A5000606D2A /* IAppleServiceUtil.swift in Sources */,
 				6DCB7EFF1EE701050074FD00 /* ITCommonAPI.swift in Sources */,
+				6D0B412329837901006F8C18 /* PlaylistViewController.swift in Sources */,
 				6DA062CA1EE44E8C00B3F5D9 /* SQLTable.swift in Sources */,
 				6DFBC4A925FDCCC1001E8375 /* StringExtension.swift in Sources */,
 				6DBA5ACF2443110600824FD5 /* IHTCUserDefaults.swift in Sources */,
@@ -778,6 +783,7 @@
 				6DBA5AF52443160000824FD5 /* IHTCAppearanceVC.swift in Sources */,
 				6DBA5AF62443160000824FD5 /* IAppleServiceUtil.swift in Sources */,
 				6DBA5AF72443160000824FD5 /* ITCommonAPI.swift in Sources */,
+				6D0B412429837901006F8C18 /* PlaylistViewController.swift in Sources */,
 				6DBA5AF82443160000824FD5 /* SQLTable.swift in Sources */,
 				6DFBC4AA25FDCCC1001E8375 /* StringExtension.swift in Sources */,
 				6DBA5AF92443160000824FD5 /* IHTCUserDefaults.swift in Sources */,
@@ -953,11 +959,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iEnglish/iEnglish.entitlements;
-				CURRENT_PROJECT_VERSION = 2023.01.26;
+				CURRENT_PROJECT_VERSION = 2023.01.27;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				"EXCLUDED_ARCHS[sdk=iphoneos*]" = armv7;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
 				INFOPLIST_FILE = iEnglish/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iEnglish;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -978,9 +986,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iEnglish/iEnglish.entitlements;
-				CURRENT_PROJECT_VERSION = 2023.01.26;
+				CURRENT_PROJECT_VERSION = 2023.01.27;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = iEnglish/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = iEnglish;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -1062,9 +1072,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iEnglish/iEnglish.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CURRENT_PROJECT_VERSION = 2023.01.26;
+				CURRENT_PROJECT_VERSION = 2023.01.27;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = "$(SRCROOT)/iEnglish/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = iEnglish;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1087,9 +1099,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = iEnglish/iEnglish.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CURRENT_PROJECT_VERSION = 2023.01.26;
+				CURRENT_PROJECT_VERSION = 2023.01.27;
 				DEVELOPMENT_TEAM = 28PV6G96R7;
 				INFOPLIST_FILE = "$(SRCROOT)/iEnglish/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = iEnglish;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

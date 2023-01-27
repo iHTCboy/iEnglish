@@ -27,12 +27,14 @@ class WordsViewController: UIViewController {
         
         if words.isEmpty {
             words = db.query(sql: "select * from Words ORDER BY upper(en)")// limit 30
+        } else {
+            // 非首页的添加播放按钮
+            self.navigationItem.rightBarButtonItem = playItem
         }
         
         // filert sort
         sortWords()
         
-        //print(words)
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white ]
@@ -46,10 +48,10 @@ class WordsViewController: UIViewController {
         NSLayoutConstraint.activate(widthConstraints)
         NSLayoutConstraint.activate(heightConstraints)
         
+        // search view
         if #available(iOS 11.0, *) {
             self.navigationItem.searchController = self.searchVC
         } else {
-            // Fallback on earlier versions
             self.tableView.tableHeaderView = self.searchVC.searchBar
         }
         
@@ -70,6 +72,11 @@ class WordsViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        words = []
+        TCVoiceUtils.stopSound()
     }
     
     // MARK:- 懒加载
@@ -99,6 +106,23 @@ class WordsViewController: UIViewController {
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.sectionIndexTrackingBackgroundColor = KColorAPPRed.withAlphaComponent(0.3)
         return tableView
+    }()
+    
+    lazy var playIndex: Int = 0
+    
+    lazy var playItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem:  UIBarButtonItem.SystemItem.play, target: self, action: #selector(playPlaylist))
+        return item
+    }()
+    
+    lazy var stopItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem:  UIBarButtonItem.SystemItem.stop, target: self, action: #selector(stopPlaylist))
+        return item
+    }()
+    
+    lazy var pauseItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem:  UIBarButtonItem.SystemItem.pause, target: self, action: #selector(pausePlaylist))
+        return item
     }()
     
     lazy var resultsVC: TCSearchResultsVC = {
@@ -158,6 +182,35 @@ class WordsViewController: UIViewController {
     var isShowChinese: Bool = false
 }
 
+// 播放列表操作
+extension WordsViewController {
+    
+    @objc
+    func playPlaylist() {
+        guard !words.isEmpty else {
+            return
+        }
+        playlistVoice(playIndex: 0)
+        self.navigationItem.rightBarButtonItem = stopItem
+    }
+    
+    @objc
+    func stopPlaylist() {
+        tableView.deselectRow(at: IndexPath(row: playIndex, section: 0), animated: true)
+        playIndex = -1
+        TCVoiceUtils.stopSound()
+        self.navigationItem.rightBarButtonItem = playItem
+    }
+    
+    @objc
+    func pausePlaylist() {
+        guard !words.isEmpty else {
+            return
+        }
+        playlistVoice(playIndex: playIndex)
+        self.navigationItem.rightBarButtonItem = stopItem
+    }
+}
 
 extension WordsViewController
 {
@@ -168,13 +221,45 @@ extension WordsViewController
         self.tableView.reloadData()
     }
     
-    func playSoundEffect(audioPath: String, ttsWords:String) {
-        // only one
-        DispatchQueue.once {
-            TCVoiceUtils.setupVoiceSystem(allowVoice: TCUserDefaults.shared.getIEAllowVoice())
+    func playlistVoice(playIndex: Int) {
+        // 停止播放
+        guard playIndex >= 0, words.count > playIndex else {
+            stopPlaylist()
+            return
         }
         
-        TCVoiceUtils.playSound(audioPath: audioPath, ttsWords: ttsWords)
+        self.playIndex = playIndex
+        let dictionary = words[playIndex] as [String : Any]
+        let enName = dictionary["en"] as? String
+        let cnName = dictionary[languageLocalCode] as? String
+        // 选中和滚动 cell
+        tableView.selectRow(at: IndexPath(row: playIndex, section: 0), animated: true, scrollPosition: .middle)
+        // 播放
+        playVoice(enName: enName, cnName: cnName) { [weak self] in
+            // 下一个
+            self?.playlistVoice(playIndex: playIndex + 1)
+        }
+    }
+    
+    func playVoice(enName: String?, cnName: String?, completion: (() -> Void)? = nil) {
+        var enName = enName
+        if let name_str = enName, name_str.contains("("){
+            enName = name_str.replacingOccurrences(of: "\\s\\(\\w+\\)", with: "", options: .regularExpression)
+        }
+        
+        if let bundlePath = Bundle.main.path(forResource: "iEnglish", ofType: "bundle"),
+            let bundle = Bundle(path: bundlePath),
+            let path = bundle.path(forResource: enName?.lowercased(), ofType: "aiff") {
+            // only one
+            DispatchQueue.once {
+                TCVoiceUtils.setupVoiceSystem(allowVoice: TCUserDefaults.shared.getIEAllowVoice())
+            }
+            
+            TCVoiceUtils.playSound(audioPath: path, ttsWords: cnName ?? "", completion: completion)
+        } else {
+            print("not found")
+            completion?()
+        }
     }
     
     func getAttributedText(word: String, plural: String) -> NSAttributedString {
@@ -450,24 +535,16 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if self.navigationItem.rightBarButtonItem != nil, playIndex > 0 {
+            self.navigationItem.rightBarButtonItem = pauseItem
+        }
+        
         let dictionary = tableView == self.tableView ? words[indexPath.row] as [String : Any] : self.resultsVC.results[indexPath.row] as [String : Any]
         
-        var name = dictionary["en"] as? String
+        let enName = dictionary["en"] as? String
+        let cnName = dictionary[languageLocalCode] as? String
         
-        if let name_str = name, name_str.contains("("){
-            name = name_str.replacingOccurrences(of: "\\s\\(\\w+\\)", with: "", options: .regularExpression)
-        }
-        
-        if let bundlePath = Bundle.main.path(forResource: "iEnglish", ofType: "bundle"),
-            let bundle = Bundle(path: bundlePath),
-            let path = bundle.path(forResource: name?.lowercased(), ofType: "aiff") {
-            //print(path)
-//            AudioServicesRemoveSystemSoundCompletion(soundId)
-            let word = (dictionary[languageLocalCode] as? String) ?? ""
-            playSoundEffect(audioPath: path, ttsWords: word)
-        } else {
-            print("not found")
-        }
+        playVoice(enName: enName, cnName: cnName)
     }
 }
 

@@ -28,10 +28,14 @@ class TCVoiceUtils: NSObject {
     static func playSound(audioPath: String, ttsWords: String, numberOfLoops: Int = 0, completion: (() -> Void)? = nil) {
         
         if let player = player, player.isPlaying {
-            player.stop()
+            player.delegate = nil
+            player.volume = 0
+            player.pause()
         }
         
         if synthesizer.isSpeaking {
+            utterance.volume = 0
+            synthesizer.delegate = nil
             synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
         }
         
@@ -105,6 +109,41 @@ class TCVoiceUtils: NSObject {
         synthesizer.speak(utterance)
     }
     
+    static func stopSound() {
+        if let player = player, player.isPlaying {
+            player.delegate = nil
+            player.volume = 0
+            player.pause()
+        }
+        
+        if synthesizer.isSpeaking {
+            utterance.volume = 0
+            synthesizer.delegate = nil
+            synthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
+        }
+    }
+    
+    fileprivate func audioPlayerNext(_ player: AVAudioPlayer, _ loops: Int) {
+        TCVoiceUtils.numberOfLoops += 1
+        // 播放中文
+        let allowChinesVoice = TCUserDefaults.shared.getIEAllowChinesVoice()
+        if allowChinesVoice && !TCVoiceUtils.ttsWords.isEmpty {
+            let interval = TCUserDefaults.shared.getIELoopsChinesInterval()
+            DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(interval)) {
+                TCVoiceUtils.tts(text: TCVoiceUtils.ttsWords)
+            }
+        } else {
+            // 符合条件才循环
+            if loops >= TCVoiceUtils.numberOfLoops || loops == -1 {
+                let interval = TCUserDefaults.shared.getIELoopsInterval()
+                // 重复播放，跳到最新的时间点开始播放
+                DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(interval)) {
+                    player.play()
+                }
+            }
+        }
+    }
+    
 }
 
 extension TCVoiceUtils: AVAudioPlayerDelegate {
@@ -146,27 +185,9 @@ extension TCVoiceUtils: AVAudioPlayerDelegate {
         audioPlayerNext(player, loops)
     }
     
-    fileprivate func audioPlayerNext(_ player: AVAudioPlayer, _ loops: Int) {
-        TCVoiceUtils.numberOfLoops += 1
-        // 播放中文
-        let allowChinesVoice = TCUserDefaults.shared.getIEAllowChinesVoice()
-        if allowChinesVoice && !TCVoiceUtils.ttsWords.isEmpty {
-            let interval = TCUserDefaults.shared.getIELoopsChinesInterval()
-            DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(interval)) {
-                TCVoiceUtils.tts(text: TCVoiceUtils.ttsWords)
-            }
-        } else {
-            // 符合条件才循环
-            if loops >= TCVoiceUtils.numberOfLoops || loops == -1 {
-                let interval = TCUserDefaults.shared.getIELoopsInterval()
-                // 重复播放，跳到最新的时间点开始播放
-                DispatchQueue.main.asyncAfter(deadline: .now() + TimeInterval(interval)) {
-                    player.play()
-                }
-            }
-        }
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        print("audioPlayerDecodeError: \(String(describing: error))")
     }
-    
 }
 
 extension TCVoiceUtils: AVSpeechSynthesizerDelegate {
