@@ -72,7 +72,6 @@ class WordsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    var soundId: SystemSoundID = 0
     // MARK:- 懒加载
     
     //获取数据库实例
@@ -169,62 +168,14 @@ extension WordsViewController
         self.tableView.reloadData()
     }
     
-    func playSoundEffect(audioPath: String) {
-        
-        let fileUrl = URL.init(fileURLWithPath: audioPath)
-        
-        playMusic(url: fileUrl)
-        
-//        AudioServicesCreateSystemSoundID(fileUrl as CFURL, &soundId)
-//
-//        AudioServicesAddSystemSoundCompletion(soundId, nil, nil, {
-//            (soundID:SystemSoundID, _:UnsafeMutableRawPointer?) in
-//            //print(" play audio completioned")
-//        }, nil)
-//
-//        AudioServicesPlaySystemSound(soundId)
-//        //        AudioServicesPlayAlertSound(soundId) //paly and Shake
-    }
-    
-    func playMusic(url: URL) {
+    func playSoundEffect(audioPath: String, ttsWords:String) {
         // only one
         DispatchQueue.once {
-            setupVoiceSystem()
+            TCVoiceUtils.setupVoiceSystem(allowVoice: TCUserDefaults.shared.getIEAllowVoice())
         }
         
-        //初始化播放器对象
-        let audioPlay = try! AVAudioPlayer.init(contentsOf: url)
-        player = audioPlay
-        //设置声音的大小
-        audioPlay.volume = TCUserDefaults.shared.getIEVolume() //范围为（0到1）；
-        //设置循环次数，如果为负数，就是无限循环，0表示不循环只播放一次
-        audioPlay.numberOfLoops = TCUserDefaults.shared.getIELoops()
-        //允许用户在不改变音调的情况下调整播放率，范围从0.5（半速）到2.0（2倍速）
-        let speed = TCUserDefaults.shared.getIESpeed()
-        audioPlay.rate = TCUserDefaults.shared.getIESpeed()
-        if speed != 1.0 {
-            audioPlay.enableRate = true
-        }
-        //设置播放进度
-        audioPlay.currentTime = 0
-        //准备播放,调用此方法将预加载缓冲区并获取音频硬件，这样做可以将调用play方法和听到输出声音之间的延时降低到最小
-        audioPlay.prepareToPlay()
-        audioPlay.play()
+        TCVoiceUtils.playSound(audioPath: audioPath, ttsWords: ttsWords)
     }
-    
-    //设置声音模式（是否设备静音也播放）
-    func setupVoiceSystem() {
-        if TCUserDefaults.shared.getIEAllowVoice() {
-            let audioSession = AVAudioSession.sharedInstance()
-            try? audioSession.setCategory(AVAudioSession.Category.playback)
-            try? audioSession.setActive(true, options: AVAudioSession.SetActiveOptions(rawValue: 0))
-        } else {
-            let audioSession = AVAudioSession.sharedInstance()
-            try? audioSession.setCategory(AVAudioSession.Category.ambient)
-            try? audioSession.setActive(true, options: AVAudioSession.SetActiveOptions(rawValue: 0))
-        }
-    }
-    
     
     func getAttributedText(word: String, plural: String) -> NSAttributedString {
         var secondaryLabel = UIColor.darkGray
@@ -512,7 +463,8 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
             let path = bundle.path(forResource: name?.lowercased(), ofType: "aiff") {
             //print(path)
 //            AudioServicesRemoveSystemSoundCompletion(soundId)
-            playSoundEffect(audioPath: path)
+            let word = (dictionary[languageLocalCode] as? String) ?? ""
+            playSoundEffect(audioPath: path, ttsWords: word)
         } else {
             print("not found")
         }
