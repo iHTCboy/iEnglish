@@ -9,6 +9,7 @@
 import UIKit
 import StoreKit
 import SafariServices
+import MessageUI
 
 class SettingController: UIViewController {
     
@@ -218,6 +219,13 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
                 gotoAppstore(isAssessment: true)
             }
             if row == 2 {
+                if !MFMailComposeViewController.canSendMail() {
+                    let alert = UIAlertController(title: "提示", message: "当前设备不支持发送邮件~", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default)
+                    alert.addAction(action)
+                    self.present(alert, animated: true)
+                    return
+                }
                 let message = "欢迎来信，写下你的问题吧" + "\n\n\n\n" + kMarginLine + "\n 当前\(kAppName)版本：" + KAppVersion + "， 系统版本：" + String(Version.SYS_VERSION_FLOAT) + "， 设备信息：" + UIDevice.init().modelName
                 let subject = "\(kAppName) Feedback"
                 ITCommonAPI.sharedInstance.sendEmail(recipients: [kEmail], subject: subject, messae: message, vc: self)

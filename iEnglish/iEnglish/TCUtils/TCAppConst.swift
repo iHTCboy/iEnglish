@@ -100,7 +100,7 @@ public extension UIDevice {
         switch identifier {
         case "iPod5,1":                                 return "iPod Touch 5"
         case "iPod7,1":                                 return "iPod Touch 6"
-        case "iPod9,1":                                 return "7th Gen iPod"
+        case "iPod9,1":                                 return "iPod Touch 7"
         case "iPhone3,1", "iPhone3,2", "iPhone3,3":     return "iPhone 4"
         case "iPhone4,1":                               return "iPhone 4s"
         case "iPhone5,1", "iPhone5,2":                  return "iPhone 5"
@@ -110,9 +110,9 @@ public extension UIDevice {
         case "iPhone7,1":                               return "iPhone 6 Plus"
         case "iPhone8,1":                               return "iPhone 6s"
         case "iPhone8,2":                               return "iPhone 6s Plus"
+        case "iPhone8,4":                               return "iPhone SE"
         case "iPhone9,1", "iPhone9,3":                  return "iPhone 7"
         case "iPhone9,2", "iPhone9,4":                  return "iPhone 7 Plus"
-        case "iPhone8,4":                               return "iPhone SE"
         case "iPhone10,1", "iPhone10,4":                return "iPhone 8"
         case "iPhone10,2", "iPhone10,5":                return "iPhone 8 Plus"
         case "iPhone10,3", "iPhone10,6":                return "iPhone X"
@@ -123,10 +123,23 @@ public extension UIDevice {
         case "iPhone12,3":                              return "iPhone 11 Pro"
         case "iPhone12,5":                              return "iPhone 11 Pro Max"
         case "iPhone12,8":                              return "iPhone SE 2nd Gen"
+            
         case "iPhone13,1":                              return "iPhone 12 Mini"
         case "iPhone13,2":                              return "iPhone 12"
         case "iPhone13,3":                              return "iPhone 12 Pro"
         case "iPhone13,4":                              return "iPhone 12 Pro Max"
+            
+        case "iPhone14,4":                              return "iPhone 13 mini"
+        case "iPhone14,5":                              return "iPhone 13"
+        case "iPhone14,2":                              return "iPhone 13  Pro"
+        case "iPhone14,3":                              return "iPhone 13  Pro Max"
+        case "iPhone14,6":                              return "iPhone SE3"
+        
+        case "iPhone14,7":                              return "iPhone 14"
+        case "iPhone14,8":                              return "iPhone 14 Plus"
+        case "iPhone15,2":                              return "iPhone 14 Pro"
+        case "iPhone15,3":                              return "iPhone 14 Pro Max"
+        
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2"
         case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3"
         case "iPad3,4", "iPad3,5", "iPad3,6":           return "iPad 4"
@@ -165,11 +178,22 @@ public extension UIDevice {
         case "iPad11,7":                                return "iPad 8th Gen (WiFi+Cellular)"
         case "iPad13,1":                                return "iPad Air 4th Gen (WiFi)"
         case "iPad13,2":                                return "iPad Air 4th Gen (WiFi+Celular)"
+        
+        case "iPad13,4", "iPad13,5", "iPad13,6", "iPad13,7":    return "iPad Pro 5th 11\""
+        case "iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11":  return "iPad Pro 5th 12.9\""
+        case "iPad13,16", "iPad13,17":                          return "iPad Air 5"
+        case "iPad13,18", "iPad13,19":                          return "iPad 10"
+        case "iPad14,3-A", "iPad14,3-B", "iPad14,4-A", "iPad14,4-B", "iPad14,3", "iPad14,4": return "iPad Pro 6th 11\""
+        case "iPad14,5-A", "iPad14,5-B", "iPad14,6-A", "iPad14,6-B", "iPad14,5", "iPad14,6": return "iPad Pro 6th 12.9\""
+            
         case "AppleTV2,1":                              return "Apple TV 2G"
         case "AppleTV3,1":                              return "Apple TV 3"
         case "AppleTV3,2":                              return "Apple TV 3 (2013)"
         case "AppleTV5,3":                              return "Apple TV 4"
         case "AppleTV6,2":                              return "Apple TV 4K"
+        case "AppleTV11,1":                              return "Apple TV 4K (2nd generation)"
+        case "AppleTV14,1":                              return "Apple TV 4K (3rd generation)"
+            
         case "i386", "x86_64":                          return "Simulator"
         default:                                        return identifier
         }
