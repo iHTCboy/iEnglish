@@ -49,7 +49,7 @@ class IHTCAppearanceVC: UITableViewController {
         if (cell  == nil) {
             cell = UITableViewCell.init(style: .value1, reuseIdentifier: "IHTCAppearanceTableViewCell")
             if #available(iOS 13.0, *) {
-                cell?.backgroundColor = .secondarySystemBackground
+                cell?.backgroundColor = .secondarySystemGroupedBackground
             }
             #if targetEnvironment(macCatalyst)
                 cell?.textLabel?.font = UIFont.systemFont(ofSize: 18)

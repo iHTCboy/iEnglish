@@ -37,9 +37,9 @@ class SettingController: UIViewController {
     }()
     
     //你想知道的单词都在这里
-    fileprivate var titles = ["0": "单词搜索:更多单词搜索,语言设置:设置英文单词翻译成的语言,声音设置:设置音量、播放次数和速度等,单词设置:设置显示单词的复数形式,\(HTCLocalized("主题外观")):暗黑or浅色",
+    fileprivate var titles = ["0": "单词搜索:更多单词搜索,语言设置:设置英文单词翻译成的语言,声音设置:设置音量、播放次数和速度等,单词设置:设置显示单词的复数形式,\(HTCLocalized("主题外观")):暗黑or浅色,英文助读:TTS (Text-To-Speech)",
         "1": "应用内评分:欢迎给\(kAppName)打评分！,AppStore评价:欢迎给\(kAppName)写评论!,分享给朋友:与身边的好友一起分享！",
-        "2": "隐私条款:用户服务使用说明,意见反馈:欢迎到AppStore提需求或bug问题,邮件联系:如有问题欢迎来信,开源地址:现已开源代码，欢迎关注&学习,更多应用:更多开发者内容推荐,关于应用:\(kAppName)"] as [String : String]
+        "2": "隐私条款:用户服务使用说明,意见反馈:欢迎到AppStore提需求或bug问题,邮件联系:如有问题欢迎来信,开源地址:现已开源代码 GitHub,更多应用:更多开发者内容推荐,关于应用:\(kAppName)"] as [String : String]
     
 }
 
@@ -188,6 +188,11 @@ extension SettingController : UITableViewDelegate, UITableViewDataSource
                 let vc = IHTCAppearanceVC()
                 vc.hidesBottomBarWhenPushed = true
                 navigationController?.pushViewController(vc, animated: true)
+            }
+            if row == 5 {
+                let vc = IHTCTTSViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             break;
         case 1:

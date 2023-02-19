@@ -146,6 +146,7 @@ class TCVoiceUtils: NSObject {
     
 }
 
+// MARK: - AVAudioPlayerDelegate
 extension TCVoiceUtils: AVAudioPlayerDelegate {
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
@@ -190,6 +191,7 @@ extension TCVoiceUtils: AVAudioPlayerDelegate {
     }
 }
 
+// MARK: - AVSpeechSynthesizerDelegate
 extension TCVoiceUtils: AVSpeechSynthesizerDelegate {
     
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {

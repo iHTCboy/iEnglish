@@ -182,7 +182,7 @@ class WordsViewController: UIViewController {
     var isShowChinese: Bool = false
 }
 
-// 播放列表操作
+// MARK: voice sound play
 extension WordsViewController {
     
     @objc
@@ -192,6 +192,7 @@ extension WordsViewController {
         }
         playlistVoice(playIndex: 0)
         self.navigationItem.rightBarButtonItem = stopItem
+        UIApplication.shared.isIdleTimerDisabled = true // 设置屏幕常亮
     }
     
     @objc
@@ -200,6 +201,7 @@ extension WordsViewController {
         playIndex = -1
         TCVoiceUtils.stopSound()
         self.navigationItem.rightBarButtonItem = playItem
+        UIApplication.shared.isIdleTimerDisabled = false
     }
     
     @objc
@@ -209,9 +211,11 @@ extension WordsViewController {
         }
         playlistVoice(playIndex: playIndex)
         self.navigationItem.rightBarButtonItem = stopItem
+        UIApplication.shared.isIdleTimerDisabled = false
     }
 }
 
+// MARK: common methed
 extension WordsViewController
 {
     func refreshData() {
@@ -372,29 +376,7 @@ extension WordsViewController
     
 }
 
-extension DispatchQueue {
-    private static var _onceTracker = [String]()
-    public class func once(file: String = #file, function: String = #function, line: Int = #line, block:()->Void) {
-        let token = file + ":" + function + ":" + String(line)
-        once(token: token, block: block)
-    }
-    /**
-     Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
-     only execute the code once even in the presence of multithreaded calls.
-     - parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
-     - parameter block: Block to execute once
-     */
-    public class func once(token: String, block:()->Void) {
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
-        if _onceTracker.contains(token) {
-            return
-        }
-        _onceTracker.append(token)
-        block()
-    }
-}
-
+// MARK: UISearchControllerDelegate
 extension WordsViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate
 {
     func updateSearchResults(for searchController: UISearchController) {
@@ -548,5 +530,26 @@ extension WordsViewController : UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-
+// MARK: Dispatch once
+extension DispatchQueue {
+    private static var _onceTracker = [String]()
+    public class func once(file: String = #file, function: String = #function, line: Int = #line, block:()->Void) {
+        let token = file + ":" + function + ":" + String(line)
+        once(token: token, block: block)
+    }
+    /**
+     Executes a block of code, associated with a unique token, only once.  The code is thread safe and will
+     only execute the code once even in the presence of multithreaded calls.
+     - parameter token: A unique reverse DNS style name such as com.vectorform.<name> or a GUID
+     - parameter block: Block to execute once
+     */
+    public class func once(token: String, block:()->Void) {
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        if _onceTracker.contains(token) {
+            return
+        }
+        _onceTracker.append(token)
+        block()
+    }
+}
